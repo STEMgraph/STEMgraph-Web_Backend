@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi import Query
 from fastapi import status
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from collections import defaultdict
 from datetime import datetime
 import copy
@@ -18,7 +19,8 @@ with open(DB_LOC) as db_file:
 
 # here comes the api code
 app = FastAPI()
-
+app.add_middleware(CORSMiddleware, allow_origins=["https://stemgraph.boekelmann.net"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+    
 @app.get("/")
 def read_root():
     """Returns a greeting."""
