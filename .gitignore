@@ -219,4 +219,70 @@ __marimo__/
 
 bin/.swp
 
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+logs/
+log/
+
+# API specific
+data/
+app/data/
+*.db
+*.sqlite
+
+# Backup files
+*.bak
+*.backup
+
+# Configuration files with secrets
+config.json
+config.yml
+config.yaml
+secrets.json
+secrets.yml
+secrets.yaml
+
+# SSL certificates
+*.pem
+*.crt
+*.key
+*.p12
+*.pfx
+
+# IDE specific
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+*.code-workspace
+
+# FastAPI specific
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Docker volumes data
+volumes/
+
+# GitHub CLI authentication
+gh-credentials/
