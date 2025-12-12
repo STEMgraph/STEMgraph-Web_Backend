@@ -1,26 +1,33 @@
-from fastapi import FastAPI
-from fastapi import Query
-from fastapi import status
+from fastapi import BackgroundTasks, FastAPI, Query, status
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from collections import defaultdict
 from datetime import datetime
-import copy
-import json
+import base64, copy, json, os, re, requests, time
 
 
 # initialize global variables
 
-DB_LOC = "/app/data/jsonld.json"
-CONTEXT_LOC = "/app/data/graphContext.json"
-with open(DB_LOC) as db_file:
-    db = json.load(db_file)
+ORG = os.environ['GITHUB_ORG']
+PAT_FILE = os.environ['GITHUB_PAT_FILE']
+STORAGE_DIR = os.environ.get('STORAGE_DIR', '/data/repos')
+METADATA_FILE = os.path.join(STORAGE_DIR, 'metadata.json')
+DATABASE_DIR = os.environ.get('DATABASE_DIR', '/data')
+DATABASE_JSON = os.path.join(DATABASE_DIR, 'challenge_db.json')
+CONTEXT_JSON = os.path.join(DATABASE_DIR, 'graphContext.json')
+
+# --- to-do: check & put values into env-variables
+# DB_LOC = "/data/jsonld.json"
+# CONTEXT_LOC = "/app/data/graphContext.json"
+# with open(DB_LOC) as db_file:
+#    db = json.load(db_file)
 
 
-# here comes the api code
+# setup the api object
 app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["https://stemgraph.boekelmann.net"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
-    
+
+
 @app.get("/")
 def read_root():
     """Returns a greeting."""
@@ -130,6 +137,11 @@ def get_whole_graph():
     wholeGraph = copy.deepcopy(db)
     wholeGraph["generatedAt"] = now()
     return wholeGraph 
+
+@app.post("/refreshDatabase")
+async def refresh_database(background_tasks: BackgroundTasks):
+    background_tasks.add_task(refresh_challenge_db_task)
+    return {"status": "refresh challenge database started"}
 
 
 # auxiliary graph manipulation subroutines
@@ -280,3 +292,96 @@ def error_notFound(field, value):
         status_code=status.HTTP_404_NOT_FOUND,
         content={"error": f"No exercises found for {field}: '{value}'"}
     )
+
+
+# auxiliary functions to build / update the database
+
+def get_pat():
+    with open(PAT_FILE, 'r') as f:
+        return f.read().strip()
+
+def list_org_repos(token):
+    url = f'https://api.github.com/orgs/{ORG}/repos?per_page=100'
+    headers = {'Authorization': f'token {token}', 'Accept': 'application/vnd.github.v3+json'}
+    repos = []
+    while url:
+        r = requests.get(url, headers=headers); r.raise_for_status()
+        repos.extend(r.json())
+        url = r.links.get('next', {}).get('url')
+    return repos
+
+def latest_commit_sha(token, owner, repo, branch):
+    url = f'https://api.github.com/repos/{owner}/{repo}/commits/{branch}'
+    headers = {'Authorization': f'token {token}', 'Accept': 'application/vnd.github.v3+json'}
+    r = requests.get(url, headers=headers); r.raise_for_status()
+    return r.json()['sha']
+
+def fetch_readme_text(token, owner, repo):
+    url = f'https://api.github.com/repos/{owner}/{repo}/readme'
+    headers = {'Authorization': f'token {token}', 'Accept': 'application/vnd.github.v3+json'}
+    r = requests.get(url, headers=headers)
+    if r.status_code == 404:
+        return None
+    r.raise_for_status()
+    data = r.json()
+    return base64.b64decode(data['content']).decode('utf-8')
+
+def extract_json_from_readme(readme_text):
+    start = readme_text.find("<!---")
+    end = readme_text.find("--->", start)
+    if start == -1 or end == -1:
+        return None
+    block = readme_text[start+5:end].strip()
+    try:
+        return json.loads(block)
+    except json.JSONDecodeError:
+        return None
+
+def ensure_metadata():
+    os.makedirs(STORAGE_DIR, exist_ok=True)
+    if os.path.exists(METADATA_FILE):
+        with open(METADATA_FILE) as f:
+            return json.load(f)
+    return {}
+
+def save_metadata(m):
+    with open(METADATA_FILE, 'w') as f:
+        json.dump(m, f)
+
+def refresh_challenge_db_task():
+    token = get_pat()
+    repos = list_org_repos(token)
+    meta = ensure_metadata()
+    uuid_pattern = re.compile(
+        r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    )
+    for r in repos:
+        name = r['name']
+        owner, branch = r['owner']['login'], r['default_branch']
+        sha = latest_commit_sha(token, owner, name, branch)
+        print(f"Checking repo {name}, sha={sha}")
+        if not uuid_pattern.match(name.lower()):
+            print("Skipped: not UUID")
+            continue
+        if meta.get(name, {}).get('sha') != sha:
+            readme_text = fetch_readme_text(token, owner, name)
+            if readme_text:
+                json_obj = extract_json_from_readme(readme_text)
+                if json_obj:
+                    filename = os.path.join(STORAGE_DIR, f'{name}__{sha}.json')
+                    tmp = filename + '.tmp'
+                    with open(tmp, 'w', encoding='utf-8') as f:
+                        json.dump(json_obj, f)
+                    os.replace(tmp, filename)
+                    meta[name] = {
+                        'sha': sha,
+                        'downloaded_at': int(time.time()),
+                        'path': filename
+                    }
+            if not readme_text:
+                print("Skipped: no README")
+            elif not json_obj:
+                print("Skipped: no valid JSON block")
+            else:
+                print("Saved JSON for", name)
+    save_metadata(meta)

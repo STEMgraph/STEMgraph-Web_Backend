@@ -1,5 +1,5 @@
 services:
-  readmefetcher:
+  stemgraph_api:
     build: .
     env_file: .env
     ports:

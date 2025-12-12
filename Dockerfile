@@ -4,7 +4,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /app
+COPY ./bin/main.py /app
 RUN mkdir -p /data/repos
 VOLUME ["/data"]
 
