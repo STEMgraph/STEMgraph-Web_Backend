@@ -6,6 +6,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ./bin/main.py /app
 RUN mkdir -p /data/repos
+COPY ./doc/graphContext.json /data
 VOLUME ["/data"]
 
 EXPOSE 8000

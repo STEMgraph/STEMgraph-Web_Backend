@@ -23,6 +23,7 @@ CONTEXT_JSON = os.path.join(DATABASE_DIR, 'graphContext.json')
 #    db = json.load(db_file)
 
 
+
 # setup the api object
 app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["https://stemgraph.boekelmann.net"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
@@ -128,14 +129,15 @@ def get_statistics():
     stats["@type"] = "Statistics"
     stats["keywordCountDistinct"] = len(get_list("keywords"))
     stats["keywordCountTotal"] = sum(get_count("keywords").values())
-    stats["nodeCount"] = len(db["@graph"])
+    wholeGraph = get_whole_graph()
+    stats["nodeCount"] = len(wholeGraph["@graph"])
     return stats
 
 @app.get("/getWholeGraph")
 def get_whole_graph():
     """Returns the whole graph, i.e. database."""
-    wholeGraph = copy.deepcopy(db)
-    wholeGraph["generatedAt"] = now()
+    with open(DATABASE_JSON, 'r', encoding='utf-8') as f:
+        wholeGraph = json.load(f)
     return wholeGraph 
 
 @app.get("/getStartNodes")
@@ -143,6 +145,7 @@ def get_start_nodes():
     """Returns all nodes that have no dependencies (entry points / starting lessons)."""
     # Start Nodes = Nodes ohne dependsOn (keine Voraussetzungen)
     starts = init_graph()
+    db = get_whole_graph()
     for ex in db["@graph"]:
         deps = ex.get("dependsOn", [])
         if not deps or len(deps) == 0:
@@ -154,6 +157,7 @@ def get_end_nodes():
     """Returns all nodes that are not referenced by others (end points / final lessons)."""
     # Sammle alle IDs die als Dependency referenziert werden
     referenced_ids = set()
+    db = get_whole_graph()
     for ex in db["@graph"]:
         if ex.get("dependsOn"):
             for dep in ex["dependsOn"]:
@@ -196,6 +200,7 @@ def get_count(field: str, subfield: str = None, lowercase: bool = True):
     - lowercase: normalize values to lowercase if True
     """
     counts = defaultdict(int)
+    db = get_whole_graph()
     for ex in db["@graph"]:
         if ex.get(field) is not None:
             field_values = ex[field]
@@ -219,6 +224,7 @@ def get_list(field: str, subfield: str = None, lowercase: bool = True):
     - lowercase: normalize values to lowercase if True
     """
     values = set()
+    db = get_whole_graph()
     for ex in db["@graph"]:
         if ex.get(field) is not None:
             field_values = ex[field]
@@ -246,6 +252,7 @@ def get_exercises_by_tag(field: str, search: str, subfield: str = None, match: s
     if lowercase:
         search = search.lower()
     exTagged = init_graph()
+    db = get_whole_graph()
     for ex in db["@graph"]:
         if ex.get(field) is not None:
             field_values = ex[field]
@@ -270,6 +277,7 @@ def get_exercises_by_tag(field: str, search: str, subfield: str = None, match: s
 
 def get_exercise_node(uuid: str):
     """Get the list element with the given uuid as @id."""
+    db = get_whole_graph()
     for ex in db["@graph"]:
         if ex["@id"] == uuid:
             return ex
@@ -300,17 +308,17 @@ def add_exercise(data, uuid, visited):
 
 def add_graph_context(data):
     """Gets context data from local context file and adds it to the data."""
-    with open(CONTEXT_LOC) as context_file:
+    with open(CONTEXT_JSON) as context_file:
         context = json.load(context_file)
     data["@context"] = context["@context"]
 
 def add_graph_metadata(data):
     """Adds metadata (url, created at & by) to the data."""
-    data["@id"] = "https://example.com/"
+    data["@id"] = "https://stemgraph-api.boekelmann.net/"
     data["generatedBy"] = {}
     data["generatedBy"]["@type"] = "schema:Organization"
-    data["generatedBy"]["schema:name"] = "STEMgraph API"
-    data["generatedBy"]["schema:url"] = "https://github.com/STEMgraph/API"
+    data["generatedBy"]["schema:name"] = "STEMgraph"
+    data["generatedBy"]["schema:url"] = "https://github.com/STEMgraph"
     data["generatedAt"] = now()
 
 
@@ -379,8 +387,8 @@ def ensure_metadata():
     return {}
 
 def save_metadata(m):
-    with open(METADATA_FILE, 'w') as f:
-        json.dump(m, f)
+    with open(METADATA_FILE, 'w', encoding='utf-8') as f:
+        json.dump(m, f, ensure_ascii=False, indent=2)
 
 def refresh_challenge_db_task():
     token = get_pat()
@@ -405,7 +413,7 @@ def refresh_challenge_db_task():
                     filename = os.path.join(STORAGE_DIR, f'{name}__{sha}.json')
                     tmp = filename + '.tmp'
                     with open(tmp, 'w', encoding='utf-8') as f:
-                        json.dump(json_obj, f)
+                        json.dump(json_obj, f, ensure_ascii=False, indent=2)
                     os.replace(tmp, filename)
                     meta[name] = {
                         'sha': sha,
@@ -419,3 +427,63 @@ def refresh_challenge_db_task():
             else:
                 print("Saved JSON for", name)
     save_metadata(meta)
+    print("All metadata from STEMgraph challenges fetched.")
+    createdb_jsonld()
+    print("Database created as JSON-LD.")
+
+
+# routines to create the json-ld-database from the challenge-metadata files
+
+def createdb_jsonld():
+    """Creates challenges-ld.json from challenges' metadata."""
+    db_jsonld = {}
+    add_ld_context(db_jsonld)
+    add_ld_metadata(db_jsonld)
+    nodes = []
+    for fname in os.listdir(STORAGE_DIR):
+        if fname != 'metadata.json':
+            file = os.path.join(STORAGE_DIR, fname)
+            with open(file) as f:
+                challenge_metadata= json.load(f)
+            node = transform_challenge_metadata(challenge_metadata) 
+            nodes.append(node)
+    db_jsonld["@graph"] = nodes
+    with open(DATABASE_JSON, 'w', encoding='utf-8') as f:
+        json.dump(db_jsonld, f, ensure_ascii=False, indent=2)
+
+def add_ld_context(db_jsonld):
+    """Gets context data from local context file."""
+    with open(CONTEXT_JSON) as context_file:
+        context = json.load(context_file)
+    db_jsonld["@context"] = context["@context"]
+
+def add_ld_metadata(db_jsonld):
+    """Creates metadata (url, created at & by)."""
+    db_jsonld["@id"] = "https://stemgraph-api.boekelmann.net/getWholeGraph"
+    db_jsonld["generatedBy"] = {}
+    db_jsonld["generatedBy"]["@type"] = "schema:Organization"
+    db_jsonld["generatedBy"]["schema:name"] = "STEMgraph"
+    db_jsonld["generatedBy"]["schema:url"] = "https://github.com/STEMgraph"
+    db_jsonld["generatedAt"] = now()
+
+def transform_challenge_metadata(md_json):
+    """Transforms challenge metadata into a json-ld node."""
+    node = {
+        "@id": md_json["id"],
+        "@type": "Exercise",
+        "learningResourceType": "Exercise"
+    }
+    if "teaches" in md_json:
+        node["teaches"] = md_json["teaches"]
+    if "depends_on" in md_json:
+        node["depends_on"] = md_json["depends_on"]
+    if "author" in md_json:
+        author_list = [md_json["author"]]
+        node["author"] = []
+        for author in author_list:
+            node["author"].append({"@type": "Person", "name": author})
+    if "publishedAt" in md_json:
+        node["publishedAt"] = md_json["first_used"]
+    if "keywords" in md_json:
+        node["keywords"] = md_json["keywords"]
+    return node
