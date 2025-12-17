@@ -16,13 +16,6 @@ DATABASE_DIR = os.environ.get('DATABASE_DIR', '/data')
 DATABASE_JSON = os.path.join(DATABASE_DIR, 'challenge_db.json')
 CONTEXT_JSON = os.path.join(DATABASE_DIR, 'graphContext.json')
 
-# --- to-do: check & put values into env-variables
-# DB_LOC = "/data/jsonld.json"
-# CONTEXT_LOC = "/app/data/graphContext.json"
-# with open(DB_LOC) as db_file:
-#    db = json.load(db_file)
-
-
 
 # setup the api object
 app = FastAPI()
@@ -476,13 +469,15 @@ def transform_challenge_metadata(md_json):
     if "teaches" in md_json:
         node["teaches"] = md_json["teaches"]
     if "depends_on" in md_json:
-        node["depends_on"] = md_json["depends_on"]
+        node["dependsOn"] = md_json["depends_on"]
     if "author" in md_json:
-        author_list = [md_json["author"]]
+        author_list = md_json["author"]
+        if isinstance(author_list, str):
+            author_list = [author_list]
         node["author"] = []
         for author in author_list:
             node["author"].append({"@type": "Person", "name": author})
-    if "publishedAt" in md_json:
+    if "first_used" in md_json:
         node["publishedAt"] = md_json["first_used"]
     if "keywords" in md_json:
         node["keywords"] = md_json["keywords"]
