@@ -1,7 +1,7 @@
-# JSON-LD structure: Graph
+# JSON-LD structure: Graph metadata
 
 **Type:** `JSON-LD`  
-**Context:** `doc/graphContext.json`
+**Context:** `bin/ld-context.json`
 
 ## Properties
 
@@ -23,12 +23,11 @@
 
 ```jsonld
 {
-  "@id": "https://raw.githubusercontent.com/KJHStraube/STEMgraph-API/refs/heads/main/doc/graphExample.json",
+  "@id": "https://stemgraph-api.boekelmann.net/getWholeGraph",
   "generatedBy": {
     "@type": "schema:Organization",
-    "schema:name": "STEMgraph API",
-    "schema:url": "https://github.com/KJHStraube/STEMgraph-API/"
+    "schema:name": "STEMgraph",
+    "schema:url": "https://github.com/STEMgraph"
   },
-  "generatedAt": "2025-11-07T15:35:00"
+  "generatedAt": "2025-12-18T11:13:21.238404Z",
 }
-

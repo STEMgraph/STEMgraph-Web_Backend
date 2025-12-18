@@ -11,21 +11,14 @@ A FastAPI solution for [STEMgraph](https://github.com/STEMgraph).
 
 ![planned use-cases for STEMgraph-API](/doc/useCase.svg "STEMgraph-API Use-Cases")
 
-## Usage
+## Setup
 
-### Initial Setup (Github-Login)
-```bash
-docker compose --profile setup run setup
-```
+### ... locally for development and testing purposes
 
-### Generate Graph Data by parsing through the STEMgraph repositories
-```bash
-docker compose up stemgraph-parser
-```
+- Clone this repository to your local workstation.
+- Create a folder called `secrets` in your local working directory.
+- Create a GitHub **Personal access token**. A **Fine-grained token** with **Read-only access to public repositories** is recommended.
+- Store the token as plain text in `secrets/github.pat`.
+- Run `docker compose up --build`.
 
-### Start API
-```bash
-docker compose up api
-```
-
-API available at `http://localhost:8000/` ([docs](http://localhost:8000/docs))
+The API is now up and running at `http://localhost:8080/docs`.

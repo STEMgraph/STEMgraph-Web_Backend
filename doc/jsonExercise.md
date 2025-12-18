@@ -1,7 +1,7 @@
 # JSON-LD Structure: Exercise
 
 **Type:** `https://schema.org/LearningResource`  
-**Context:** `doc/graphContext.json`
+**Context:** `bin/ld-context.json`
 
 ## Properties
 
