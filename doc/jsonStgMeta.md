@@ -2,7 +2,7 @@
 
 **Type:** `https://schema.org/LearningResource`
 
-The metadata is placed on top of the exercise document between &lt;!-- and --&gt;.
+The metadata is placed on top of the exercise document between &lt;!--- and ---&gt;. Take care that there are **three* dashes instead of two as usual for HTML comments.
 
 ## Properties
 

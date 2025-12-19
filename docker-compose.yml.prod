@@ -1,0 +1,30 @@
+services:
+  stemgraph-api:
+    build: .
+    env_file: .env
+    expose:
+      - "8000"
+    secrets:
+      - github-pat
+    volumes:
+      - graph-db:/graph-db
+    restart: on-failure
+    networks:
+      frontproxy_fnet:
+        ipv4_address: 172.20.20.30
+
+secrets:
+  github-pat:
+    file: ./secrets/github.pat
+
+volumes:
+  graph-db:
+
+networks:
+  frontproxy_fnet:
+    external: true
+  backend:
+    name: stemgraph-api_backend
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"

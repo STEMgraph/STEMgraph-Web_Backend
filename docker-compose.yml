@@ -1,18 +1,18 @@
 services:
-  stemgraph_api:
+  stemgraph-api:
     build: .
     env_file: .env
     ports:
       - "8000:8000"
     secrets:
-      - github_pat
+      - github-pat
     volumes:
-      - data:/data
+      - graph-db:/graph-db
     restart: unless-stopped
 
 secrets:
-  github_pat:
+  github-pat:
     file: ./secrets/github.pat
 
 volumes:
-  data:
+  graph-db:

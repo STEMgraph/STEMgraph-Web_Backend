@@ -54,18 +54,1168 @@
       "@type": "xsd:dateTime"
     }
   },
-  "@id": "https://raw.githubusercontent.com/KJHStraube/STEMgraph-API/refs/heads/main/doc/graphExample.json",
+  "@id": "https://stemgraph-api.boekelmann.net/getWholeGraph",
   "generatedBy": {
     "@type": "schema:Organization",
-    "schema:name": "STEMgraph API",
-    "schema:url": "https://github.com/KJHStraube/STEMgraph-API/"
+    "schema:name": "STEMgraph",
+    "schema:url": "https://github.com/STEMgraph"
   },
-  "generatedAt": "2025-11-07T15:35:00",
+  "generatedAt": "2025-12-18T11:13:21.238404Z",
   "@graph": [
+    {
+      "@id": "c2493cfd-4afb-4045-8c57-726cc9486f77",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Cross-language Linking: Fortran, C, and Assembly",
+      "dependsOn": [
+        "718193ef-11a1-408d-af23-4b10c24d490d",
+        "99787eda-617a-4a68-b9a4-d60ec5c5c303"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-02",
+      "keywords": [
+        "Linking",
+        "Fortran",
+        "Assembly",
+        "C"
+      ]
+    },
+    {
+      "@id": "302c98a7-cbea-435c-ada2-bbf7538429a2",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "C Compiler Basics",
+      "dependsOn": [
+        "718193ef-11a1-408d-af23-4b10c24d490d",
+        "99787eda-617a-4a68-b9a4-d60ec5c5c303"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-02",
+      "keywords": [
+        "C Compiler",
+        "Assembler",
+        "Linking",
+        "Object Files"
+      ]
+    },
+    {
+      "@id": "a23aa456-d465-4860-b955-676181a511ba",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "dependsOn": [
+        "2ad3a473-2965-40ad-ab86-891dcfeed508"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-12-04",
+      "keywords": [
+        "C++",
+        "Compiled library",
+        "CMake",
+        "Static linking",
+        "Project structure"
+      ]
+    },
+    {
+      "@id": "c64df047-9993-4aa8-9dc7-dc712125910e",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Utilizing the Stack from C",
+      "dependsOn": [
+        "68ffd195-2ba7-4267-a939-e0bddcf0d01d",
+        "f87c7e89-ece7-4c55-af54-16a3b3b7435f"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-12",
+      "keywords": [
+        "assembly",
+        "stack",
+        "variables",
+        "addresses",
+        "x86_64",
+        "GAS"
+      ]
+    },
+    {
+      "@id": "d58d972d-7730-4b1c-8ec2-a8288ef0ed05",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Understanding Cryptographic Signatures",
+      "dependsOn": [
+        "e8add8e9-7a67-4b50-af89-6c1ce6558e0d"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-13",
+      "keywords": [
+        "cryptography",
+        "digital signatures",
+        "shell",
+        "hashing",
+        "security"
+      ]
+    },
+    {
+      "@id": "2c7334b3-b07d-48d6-a562-79072d8e166e",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Editing Files from your Terminal with VIM",
+      "dependsOn": [
+        "3193c311-8662-4aed-a77a-d595bbf1c1e4",
+        "fcef696e-079c-4d83-b611-7b378bb8ac07"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-26",
+      "keywords": [
+        "vim",
+        "exercise",
+        "texteditor"
+      ]
+    },
+    {
+      "@id": "a4b0b901-5c73-48b4-9eb8-5cedc4d8c67b",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Running Python Services with `systemd`",
+      "dependsOn": [
+        "a0f6c77d-9645-4e6c-80dc-a80608786266",
+        "2d1d315d-bb92-48c0-b19f-19529a45e5ff",
+        "b9e34253-61e2-4fb7-bd36-388c370fa765"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-06",
+      "keywords": [
+        "systemd",
+        "python",
+        "http.server",
+        "virtualenv",
+        "unit files"
+      ]
+    },
+    {
+      "@id": "a9c9305e-826b-41e2-8235-bb1315b07db9",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "dependsOn": [
+        "2ad3a473-2965-40ad-ab86-891dcfeed508"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-12-04",
+      "keywords": [
+        "C++",
+        "CMake",
+        "std::filesystem",
+        "Linking standard libraries",
+        "Compiler flags"
+      ]
+    },
+    {
+      "@id": "d1bee1c7-d88a-4f00-a44e-3e402f6ee826",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Docker Volumes",
+      "dependsOn": [
+        "21351032-2a40-4101-8c29-513fdaf37365"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-14",
+      "keywords": [
+        "docker",
+        "volumes",
+        "persistent storage",
+        "bind mounts",
+        "named volumes"
+      ]
+    },
+    {
+      "@id": "71450eb9-b69b-45e9-8a43-8bc0fae963d1",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Structuring Content with Environments and Lists in LaTeX",
+      "dependsOn": [
+        "00650b50-14de-471d-a347-246f47ffadde"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-02",
+      "keywords": [
+        "LaTeX",
+        "environments",
+        "lists",
+        "vim",
+        "compilation"
+      ]
+    },
+    {
+      "@id": "862f9d0d-6ee1-4746-9988-e7cd0efc1c56",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Interacting with the Shell: The Environment",
+      "dependsOn": [
+        "8d3e51c2-4811-4275-976c-04e3b3215998"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-17",
+      "keywords": [
+        "shell",
+        "environment"
+      ]
+    },
+    {
+      "@id": "68d6f0e5-dff5-453e-a1e4-9df3d3fc7d89",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Datatypes",
+      "dependsOn": [
+        "memory",
+        "encoding",
+        "mapping"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-20",
+      "keywords": [
+        "type",
+        "datatype",
+        "encoding",
+        "C"
+      ]
+    },
+    {
+      "@id": "c25a4d2d-dd76-4b3c-868f-aaef175c0f89",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Basic Operations from the Terminal",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "shell",
+        "expressions",
+        "terminal",
+        "basics"
+      ]
+    },
+    {
+      "@id": "f67933c1-9705-4f35-9b77-821767fa8135",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using Character Entities in HTML",
+      "dependsOn": [
+        "3ee0acd9-0f99-4423-b4f3-a0ca84a16422"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-13",
+      "keywords": [
+        "HTML",
+        "character entities",
+        "vim",
+        "special characters",
+        "escaping"
+      ]
+    },
+    {
+      "@id": "72dca6d2-6c2d-46be-aaa1-666a80a313f9",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Custom Commands and Macros in LaTeX",
+      "dependsOn": [
+        "db286852-f2d2-4593-adc1-6682f352cd4f"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-04",
+      "keywords": [
+        "LaTeX",
+        "macros",
+        "commands",
+        "newcommand",
+        "renewcommand"
+      ]
+    },
+    {
+      "@id": "301394c2-6efb-4677-aaff-47091fb8145d",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Secure File Transfer with SCP",
+      "dependsOn": [
+        "8c79cd1f-f6bd-4930-b62c-b2970c412735"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-13",
+      "keywords": [
+        "scp",
+        "ssh",
+        "file transfer",
+        "linux",
+        "remote access"
+      ]
+    },
+    {
+      "@id": "8acee03e-6020-4e3b-86b7-d7747b216258",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Processing Arguments from stdin with `xargs`",
+      "dependsOn": [
+        "b668e389-98db-4777-bc4c-190de535836c"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-03",
+      "keywords": [
+        "shell",
+        "xargs",
+        "stdin",
+        "stdout",
+        "command chaining",
+        "pipelines",
+        "filters"
+      ]
+    },
+    {
+      "@id": "56e4d8fa-8d84-405d-b816-62ad9d3973db",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Memory Layout and Addressing of C Structs",
+      "dependsOn": [
+        "b3531ed1-472f-4448-b60b-c58b9671a0a2"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-07-03",
+      "keywords": [
+        "C",
+        "struct",
+        "memory layout",
+        "padding",
+        "addressing"
+      ]
+    },
+    {
+      "@id": "3b947ad2-5b1c-493b-ad08-364a61d5e6c0",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using MariaDB in a Docker Container",
+      "dependsOn": [
+        "d1bee1c7-d88a-4f00-a44e-3e402f6ee826"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-14",
+      "keywords": [
+        "MariaDB",
+        "Docker",
+        "Container",
+        "Persistent Storage",
+        "SQL"
+      ]
+    },
+    {
+      "@id": "5adc24d3-4054-453e-80dd-30a820be8ed3",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using `argc` and `argv` in C",
+      "dependsOn": [
+        "0b6b3ce8-418e-4900-ae42-a6d068389a12"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-26",
+      "keywords": [
+        "C",
+        "argc",
+        "argv",
+        "main"
+      ]
+    },
+    {
+      "@id": "cdd6a16c-90a8-4192-9cc3-9a3f8c6a39eb",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Managing Bibliographies and Citations with BibTeX",
+      "dependsOn": [
+        "5b3eacb4-79f5-40cf-8c73-3dcbbd5f8f89"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Exercise Sheet Assistant"
+        }
+      ],
+      "publishedAt": "2025-06-04",
+      "keywords": [
+        "LaTeX",
+        "bibliography",
+        "citations",
+        "BibTeX",
+        "references"
+      ]
+    },
+    {
+      "@id": "7d3bb490-8826-464b-9e97-1f7703b2e40b",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Git: Fork and Sync with the Original Repository",
+      "dependsOn": [
+        "60b25ba1-4dd1-4ab9-a0b4-95408b08f6dc"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Tabea Röthemeyer"
+        },
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-03",
+      "keywords": [
+        "git",
+        "github",
+        "fork",
+        "sync",
+        "upstream"
+      ]
+    },
+    {
+      "@id": "1b40b633-75bc-41c4-be3c-a7f9b5e8d40b",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Packaging a Python Application with Docker",
+      "dependsOn": [
+        "24b25804-5bb5-443f-a78a-1bd485bebed8",
+        "2d1d315d-bb92-48c0-b19f-19529a45e5ff"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-13",
+      "keywords": [
+        "docker",
+        "python",
+        "packaging",
+        "requirements.txt"
+      ]
+    },
+    {
+      "@id": "facd8210-6a85-4e35-9a6e-fa623319b568",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "X11 Intro",
+      "dependsOn": [
+        "fcef696e-079c-4d83-b611-7b378bb8ac07"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-12-05",
+      "keywords": [
+        "x11",
+        "linux",
+        "display-server",
+        "graphics",
+        "device-files",
+        "events"
+      ]
+    },
+    {
+      "@id": "f81d1db6-ad8e-42ff-916c-157049d29292",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Serving Local Directories with Apache and Virtual Hosts",
+      "dependsOn": [
+        "b9e34253-61e2-4fb7-bd36-388c370fa765"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-06",
+      "keywords": [
+        "apache",
+        "localhost",
+        "virtualhosts",
+        "subdomains",
+        "webserver"
+      ]
+    },
+    {
+      "@id": "a8abf235-1dcb-4234-89bd-b380e96b5378",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "A minimal CopperSpice Example",
+      "dependsOn": [
+        "abe720ad-32b4-4303-9b61-5875f592c05c"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-20",
+      "keywords": [
+        "CopperSpice",
+        "GUI",
+        "C++"
+      ]
+    },
+    {
+      "@id": "9a437897-663d-442b-82bd-f34643db7e4e",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Introducing Boolean Algebra with Switches and Logic",
+      "dependsOn": [
+        "binary_switch_mapping"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-27",
+      "keywords": [
+        "boolean algebra",
+        "logic gates",
+        "functions",
+        "truth tables",
+        "binary"
+      ]
+    },
+    {
+      "@id": "29552b11-ae05-483a-9909-2984bfb66ad3",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Bitfields and Packing in C Structs",
+      "dependsOn": [
+        "56e4d8fa-8d84-405d-b816-62ad9d3973db"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-07-03",
+      "keywords": [
+        "C",
+        "bitfields",
+        "packing",
+        "memory layout",
+        "struct",
+        "alignment"
+      ]
+    },
+    {
+      "@id": "ef194da4-9d0f-45a3-baf8-bfac82efd0a8",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Comparing and Branching in C and Assembly",
+      "dependsOn": [
+        "800c7dd9-5ccf-42c1-b9ea-c2764579cf5d",
+        "cc424af3-2bd7-491f-b678-89e18904bf58"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-12",
+      "keywords": [
+        "assembly",
+        "stack",
+        "variables",
+        "addresses",
+        "x86_64",
+        "GAS"
+      ]
+    },
+    {
+      "@id": "93b1742d-4a11-4390-a6c4-2818f3de569e",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Advanced SVG: Coordinate Systems, Viewports, and Scaling",
+      "dependsOn": [
+        "293aa994-02be-42eb-8859-f7e21029a875"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-04",
+      "keywords": [
+        "SVG",
+        "viewport",
+        "coordinate system",
+        "scaling",
+        "markup"
+      ]
+    },
+    {
+      "@id": "60b25ba1-4dd1-4ab9-a0b4-95408b08f6dc",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Git: Fork and Contribute on Github",
+      "dependsOn": [
+        "722698f1-d030-4813-ab8a-b9fd0c92bf27"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Tabea Röthemeyer"
+        },
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-02",
+      "keywords": [
+        "learning",
+        "exercises",
+        "github",
+        "git"
+      ]
+    },
+    {
+      "@id": "f46a35bf-69f3-4385-ab0c-b23074589a35",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using `argparse` in Python Applications",
+      "dependsOn": [
+        "7130a694-458e-4e24-80b7-d8673f765e69"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-13",
+      "keywords": [
+        "argparse",
+        "python",
+        "cli",
+        "arguments",
+        "--version",
+        "-h"
+      ]
+    },
+    {
+      "@id": "da751de6-10d3-4770-a4d3-359f08bc6631",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Mappings and Functions",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-27",
+      "keywords": [
+        "mathematics",
+        "mapping",
+        "function"
+      ]
+    },
+    {
+      "@id": "24b25804-5bb5-443f-a78a-1bd485bebed8",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Introduction to Docker",
+      "dependsOn": [
+        "fcef696e-079c-4d83-b611-7b378bb8ac07",
+        "b9e34253-61e2-4fb7-bd36-388c370fa765"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-13",
+      "keywords": [
+        "docker",
+        "containerization",
+        "linux",
+        "development"
+      ]
+    },
+    {
+      "@id": "e954e47f-3d9d-4707-bea3-1ef3105278f4",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Cartesian Products and Functions of Multiple Inputs",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-27",
+      "keywords": [
+        "mathematics",
+        "cartesian product",
+        "function",
+        "mapping",
+        "tuples"
+      ]
+    },
+    {
+      "@id": "11830a64-a50f-461e-8379-ae9511768cc4",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Document Structure Hierarchy in LaTeX",
+      "dependsOn": [
+        "00650b50-14de-471d-a347-246f47ffadde"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-02",
+      "keywords": [
+        "LaTeX",
+        "document structure",
+        "chapters",
+        "sections",
+        "vim"
+      ]
+    },
+    {
+      "@id": "ae09827a-4af8-4d4f-bf38-582731a2f110",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Running a FastAPI Service with `systemd` and Testing with `curl`",
+      "dependsOn": [
+        "a4b0b901-5c73-48b4-9eb8-5cedc4d8c67b",
+        "c1f2cd2b-3ffc-44a8-86b1-111f9d246c10",
+        "e8add8e9-7a67-4b50-af89-6c1ce6558e0d"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-06",
+      "keywords": [
+        "systemd",
+        "fastapi",
+        "curl",
+        "python",
+        "web services"
+      ]
+    },
+    {
+      "@id": "3ee0acd9-0f99-4423-b4f3-a0ca84a16422",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Creating a Simple HTML Page",
+      "dependsOn": [
+        "2c7334b3-b07d-48d6-a562-79072d8e166e"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-13",
+      "keywords": [
+        "HTML",
+        "vim",
+        "terminal",
+        "basic web page",
+        "cross-platform"
+      ]
+    },
+    {
+      "@id": "fb98095a-0ef6-465a-886a-e8b9e3cad876",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Color Picker with Lambda Function",
+      "dependsOn": [
+        "58818b9a-23fe-4cf2-83f4-08bc3ff1cff5",
+        "a8abf235-1dcb-4234-89bd-b380e96b5378"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-20",
+      "keywords": [
+        "CopperSpice",
+        "GUI",
+        "C++",
+        "lambda",
+        "QColorDialog"
+      ]
+    },
+    {
+      "@id": "df08f299-5635-4e4d-8af1-6323bcf4a828",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Sizes of Built-in Datatypes in C",
+      "dependsOn": [
+        "0b6b3ce8-418e-4900-ae42-a6d068389a12"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-07-03",
+      "keywords": [
+        "C",
+        "datatype",
+        "size",
+        "sizeof",
+        "int",
+        "char",
+        "float"
+      ]
+    },
+    {
+      "@id": "e7792ebe-224a-42c0-82ca-b1150127082c",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Evaluating Complex Expressions with the Shell",
+      "dependsOn": [
+        "862f9d0d-6ee1-4746-9988-e7cd0efc1c56"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "shell",
+        "evaluation",
+        "identifiers",
+        "functions"
+      ]
+    },
+    {
+      "@id": "e3ce0209-0e4f-4619-97f0-8119a8942a56",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "dependsOn": [
+        "a9c9305e-826b-41e2-8235-bb1315b07db9",
+        "ba108c71-19c6-4063-b813-fdbbe0b5d775"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-12-04",
+      "keywords": [
+        "C++",
+        "CMake",
+        "Installation",
+        "find_package",
+        "Packaging",
+        "Config files"
+      ]
+    },
+    {
+      "@id": "e3a451cf-dccf-474b-97d2-17505e309ba0",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Writing to the Terminal with GAS",
+      "dependsOn": [
+        "718193ef-11a1-408d-af23-4b10c24d490d"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "assembly",
+        "GAS",
+        "syscall",
+        "write",
+        "stdout",
+        "Linux"
+      ]
+    },
+    {
+      "@id": "9c731ef8-b682-470f-bcd5-e22dca5d6b0a",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Converting SVG Files to Raster Images on Linux",
+      "dependsOn": [
+        "93b1742d-4a11-4390-a6c4-2818f3de569e",
+        "fcef696e-079c-4d83-b611-7b378bb8ac07",
+        "7f50ba23-f5a6-4bc7-887f-ed9247220544"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-04",
+      "keywords": [
+        "SVG",
+        "conversion",
+        "PNG",
+        "JPEG",
+        "Linux",
+        "command-line",
+        "rasterization"
+      ]
+    },
+    {
+      "@id": "a0f6c77d-9645-4e6c-80dc-a80608786266",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Serving Static Files with `http.server`",
+      "dependsOn": [
+        "3ee0acd9-0f99-4423-b4f3-a0ca84a16422",
+        "7130a694-458e-4e24-80b7-d8673f765e69"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-07",
+      "keywords": [
+        "python",
+        "http.server"
+      ]
+    },
+    {
+      "@id": "00650b50-14de-471d-a347-246f47ffadde",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Compiling Your First LaTeX Document",
+      "dependsOn": [
+        "2c7334b3-b07d-48d6-a562-79072d8e166e"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-15",
+      "keywords": [
+        "LaTeX",
+        "compilation",
+        "documentclass",
+        "vim",
+        "wymiwyg"
+      ]
+    },
+    {
+      "@id": "5ae3c504-9947-49d3-9dd5-1ac6f9b22a7b",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Introduction to GNU Make",
+      "dependsOn": [
+        "302c98a7-cbea-435c-ada2-bbf7538429a2"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-04",
+      "keywords": [
+        "compilation",
+        "automation",
+        "toolchain"
+      ]
+    },
+    {
+      "@id": "db286852-f2d2-4593-adc1-6682f352cd4f",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Advanced Document Structuring: Labels and References",
+      "dependsOn": [
+        "66726805-4497-4dce-a1ba-ccf930a721f8",
+        "11830a64-a50f-461e-8379-ae9511768cc4",
+        "2d349b37-ef59-4353-87e2-33896c7d0064",
+        "fc36b61a-a948-4971-87b1-dcf98a1c5d80",
+        "71450eb9-b69b-45e9-8a43-8bc0fae963d1"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Exercise Sheet Assistant"
+        }
+      ],
+      "publishedAt": "2025-06-04",
+      "keywords": [
+        "labels",
+        "references",
+        "LaTeX",
+        "figures",
+        "tables",
+        "environments",
+        "math",
+        "document hierarchy"
+      ]
+    },
+    {
+      "@id": "279a01d6-7696-46b7-9cb7-2c44773ad06b",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "From `printf` to `fprintf`",
+      "dependsOn": [
+        "a2596a91-c7de-477a-bfbb-b08867f1aa89"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "fprintf",
+        "streams",
+        "C",
+        "output"
+      ]
+    },
     {
       "@id": "f87c7e89-ece7-4c55-af54-16a3b3b7435f",
       "@type": "Exercise",
       "learningResourceType": "Exercise",
+      "teaches": "C Compiler: Working with Primitive Types and Inspecting Binaries",
+      "dependsOn": [
+        "302c98a7-cbea-435c-ada2-bbf7538429a2",
+        "81f2e303-d35c-4857-9cb7-190e3c5372b0",
+        [
+          "OR",
+          "718193ef-11a1-408d-af23-4b10c24d490d",
+          "99787eda-617a-4a68-b9a4-d60ec5c5c303"
+        ]
+      ],
       "author": [
         {
           "@type": "Person",
@@ -80,43 +1230,291 @@
         "Objdump",
         "Locals and Globals",
         "Primitive Types"
-      ],
-      "teaches": "C Compiler: Working with Primitive Types and Inspecting Binaries",
-      "dependsOn": [
-        "302c98a7-cbea-435c-ada2-bbf7538429a2",
-        "81f2e303-d35c-4857-9cb7-190e3c5372b0",
-        {
-          "@type": "dependsOnAlternatives",
-          "oneOf": [
-            "718193ef-11a1-408d-af23-4b10c24d490d",
-            "99787eda-617a-4a68-b9a4-d60ec5c5c303"
-          ]
-        }
       ]
     },
     {
-      "@id": "302c98a7-cbea-435c-ada2-bbf7538429a2",
+      "@id": "04c71741-b965-41c0-936d-62f513e73df6",
       "@type": "Exercise",
       "learningResourceType": "Exercise",
+      "teaches": "Introduction to PlantUML: Generating Diagrams in Text",
+      "dependsOn": [
+        "293aa994-02be-42eb-8859-f7e21029a875"
+      ],
       "author": [
         {
           "@type": "Person",
           "name": "Stephan Bökelmann"
         }
       ],
-      "publishedAt": "2025-04-02",
+      "publishedAt": "2025-06-06",
       "keywords": [
-        "C Compiler",
-        "Assembler",
-        "Linking",
-        "Object Files"
-      ],
-      "teaches": "C Compiler Basics"
+        "PlantUML",
+        "PUML",
+        "diagram",
+        "UML",
+        "Kroki",
+        "SVG",
+        "installation"
+      ]
     },
     {
-      "@id": "81f2e303-d35c-4857-9cb7-190e3c5372b0",
+      "@id": "b668e389-98db-4777-bc4c-190de535836c",
       "@type": "Exercise",
       "learningResourceType": "Exercise",
+      "teaches": "Interacting with the Shell: Pipelines and Filters",
+      "dependsOn": [
+        "e46ffb8b-00d6-44a2-ad40-552ea03b4e3a"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-03",
+      "keywords": [
+        "shell",
+        "pipelines",
+        "grep",
+        "wc",
+        "sort",
+        "uniq",
+        "filters",
+        "stdin",
+        "stdout",
+        "command chaining",
+        "tr"
+      ]
+    },
+    {
+      "@id": "6e50613d-60e2-40a8-91ae-609e0721f613",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Inline Assembly in C: Inputs, Outputs, and Clobbers",
+      "dependsOn": [
+        "81f2e303-d35c-4857-9cb7-190e3c5372b0"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-05",
+      "keywords": [
+        "C Compiler",
+        "Inline Assembly",
+        "GCC Extended Asm",
+        "Clobber List",
+        "Inputs and Outputs"
+      ]
+    },
+    {
+      "@id": "474307f2-a30c-4639-9379-298bf1a4c00b",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using Git on Your Local Machine",
+      "dependsOn": [
+        "2c7334b3-b07d-48d6-a562-79072d8e166e"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-26",
+      "keywords": [
+        "learning",
+        "exercises",
+        "education",
+        "practice"
+      ]
+    },
+    {
+      "@id": "c8353038-9b0b-4ff5-b872-7df816d31fc3",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Rendering Sequence Diagrams with Kroki and PlantUML",
+      "dependsOn": [
+        "e8add8e9-7a67-4b50-af89-6c1ce6558e0d"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-06",
+      "keywords": [
+        "PlantUML",
+        "Kroki",
+        "Sequence Diagram",
+        "Docker",
+        "SVG Rendering"
+      ]
+    },
+    {
+      "@id": "58818b9a-23fe-4cf2-83f4-08bc3ff1cff5",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Exploring C++ Lambda Expressions",
+      "dependsOn": [
+        "functors"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-20",
+      "keywords": [
+        "C++",
+        "Lambda",
+        "Functional Programming",
+        "Closures"
+      ]
+    },
+    {
+      "@id": "1f867627-725b-40f7-9ecd-d1072c941367",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Introduction to HTML Anchor Elements",
+      "dependsOn": [
+        "3ee0acd9-0f99-4423-b4f3-a0ca84a16422"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-13",
+      "keywords": [
+        "HTML",
+        "anchor",
+        "a element",
+        "hyperlink",
+        "navigation"
+      ]
+    },
+    {
+      "@id": "4b957490-badf-4264-b9f2-1b5aa370f36e",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "K-Map Minimization of Boolean Expressions",
+      "dependsOn": [
+        "9a437897-663d-442b-82bd-f34643db7e4e"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "karnaugh map",
+        "truth table",
+        "boolean",
+        "minimization"
+      ]
+    },
+    {
+      "@id": "fa0f19fa-c579-4183-9496-0eaa4251dfd4",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Printing Runtime Values",
+      "dependsOn": [
+        "a2596a91-c7de-477a-bfbb-b08867f1aa89"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-20",
+      "keywords": [
+        "C",
+        "exercises",
+        "printf",
+        "runtime values",
+        "types"
+      ]
+    },
+    {
+      "@id": "fc36b61a-a948-4971-87b1-dcf98a1c5d80",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Creating Tables in LaTeX",
+      "dependsOn": [
+        "00650b50-14de-471d-a347-246f47ffadde"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-02",
+      "keywords": [
+        "LaTeX",
+        "tables",
+        "tabular",
+        "vim",
+        "compilation"
+      ]
+    },
+    {
+      "@id": "b9e34253-61e2-4fb7-bd36-388c370fa765",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Introduction to `systemd`",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-06",
+      "keywords": [
+        "systemd",
+        "linux",
+        "services",
+        "unit files",
+        "init system"
+      ]
+    },
+    {
+      "@id": "0508295d-de49-4a67-8113-efebffc62d96",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using the Windows Terminal",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-30",
+      "keywords": [
+        "CMD",
+        "Windows",
+        "basics"
+      ]
+    },
+    {
+      "@id": "0b6b3ce8-418e-4900-ae42-a6d068389a12",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Expressions and Functions",
+      "dependsOn": [
+        "61354751-6887-4761-9ef0-ca25d237cf1c"
+      ],
       "author": [
         {
           "@type": "Person",
@@ -125,17 +1523,955 @@
       ],
       "publishedAt": "2025-04-02",
       "keywords": [
-        "Assembler",
-        "C",
-        "Object Files",
-        "Comparison"
+        "C Language",
+        "Expressions",
+        "Functions",
+        "Operators"
+      ]
+    },
+    {
+      "@id": "341f55bf-db2f-4c98-b7c1-b6b3e6b75ddb",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using the Terminal-Emulator to Explore the *nix Filesystem",
+      "dependsOn": [
+        "e46ffb8b-00d6-44a2-ad40-552ea03b4e3a"
       ],
-      "teaches": "Comparing Object Files from GAS and GCC"
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "shell",
+        "filesystem",
+        "cd",
+        "pwd",
+        "ls"
+      ]
+    },
+    {
+      "@id": "1bab3b9e-6928-493a-acbc-e28b33ded429",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Safely Opening and Closing Files in C",
+      "dependsOn": [
+        "279a01d6-7696-46b7-9cb7-2c44773ad06b",
+        "845d15ed-1fb2-4b2c-8096-732f29e01c93"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "file handling",
+        "fopen",
+        "fclose",
+        "error handling",
+        "C"
+      ]
+    },
+    {
+      "@id": "f2941e97-8d49-4c6a-93e1-c72f384e1cbe",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Context Switching with `git stash`",
+      "dependsOn": [
+        "2f4d1f4f-a53b-485e-a290-2da6b69353b2"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Tabea Röthemeyer"
+        },
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-12",
+      "keywords": [
+        "git",
+        "stash",
+        "context-switch"
+      ]
+    },
+    {
+      "@id": "2f4d1f4f-a53b-485e-a290-2da6b69353b2",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Git: Branch and Merge Conflicts",
+      "dependsOn": [
+        "474307f2-a30c-4639-9379-298bf1a4c00b"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Tabea Röthemeyer"
+        },
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-12",
+      "keywords": [
+        "git",
+        "merge",
+        "branch"
+      ]
+    },
+    {
+      "@id": "bae22056-8b3c-4c71-807d-68abc7171b36",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Extracting and Filtering JSON Data with `jq`",
+      "dependsOn": [
+        "e8add8e9-7a67-4b50-af89-6c1ce6558e0d"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-03",
+      "keywords": [
+        "jq",
+        "json",
+        "curl",
+        "github api",
+        "data extraction"
+      ]
+    },
+    {
+      "@id": "00f91b51-4e5d-4e2f-9acd-be120706958e",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Displaying Images in HTML",
+      "dependsOn": [
+        "3ee0acd9-0f99-4423-b4f3-a0ca84a16422"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-13",
+      "keywords": [
+        "HTML",
+        "vim",
+        "images",
+        "tables",
+        "basic web design"
+      ]
+    },
+    {
+      "@id": "fe5d5ad9-cb98-473c-a8ba-606291151080",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Reading, Modifying, and Printing a Character with NASM",
+      "dependsOn": [
+        "116c995e-c4b7-40f5-b84f-068474bbb87c"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "NASM",
+        "syscall",
+        "read",
+        "write",
+        "file descriptor",
+        "ASCII",
+        "Linux"
+      ]
+    },
+    {
+      "@id": "e8add8e9-7a67-4b50-af89-6c1ce6558e0d",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using `curl` to Interact with Web APIs",
+      "dependsOn": [
+        "e46ffb8b-00d6-44a2-ad40-552ea03b4e3a"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-07",
+      "keywords": [
+        "curl",
+        "web",
+        "HTTP",
+        "GET",
+        "POST",
+        "REST"
+      ]
+    },
+    {
+      "@id": "800c7dd9-5ccf-42c1-b9ea-c2764579cf5d",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Control Flow with `jmp` and `cmp` in GAS",
+      "dependsOn": [
+        "718193ef-11a1-408d-af23-4b10c24d490d"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-12",
+      "keywords": [
+        "assembly",
+        "GAS",
+        "jmp",
+        "cmp",
+        "conditional",
+        "Linux"
+      ]
+    },
+    {
+      "@id": "7f50ba23-f5a6-4bc7-887f-ed9247220544",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Shell Scripts",
+      "dependsOn": [
+        "2c7334b3-b07d-48d6-a562-79072d8e166e"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-08",
+      "keywords": [
+        "bash",
+        "shell",
+        "script",
+        "shebang"
+      ]
+    },
+    {
+      "@id": "b9e0a0a7-cce1-4d14-ae1c-5f8f57472c46",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using asymmetrical key pairs for SSH",
+      "dependsOn": [
+        "SSH"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-17",
+      "keywords": [
+        "encryption",
+        "SSH",
+        "RSA"
+      ]
+    },
+    {
+      "@id": "415e5347-4933-4423-abe7-57a233963f22",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "From Vision to Story: Structuring Agile Product Development",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-08",
+      "keywords": [
+        "scrum",
+        "vision",
+        "story",
+        "epic"
+      ]
+    },
+    {
+      "@id": "02a2b4e3-d265-4810-a886-fc403e7ebf86",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Number Systems: Binary, Decimal, and Hexadecimal",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-02",
+      "keywords": [
+        "numbers",
+        "binary",
+        "decimal",
+        "hexadecimal"
+      ]
+    },
+    {
+      "@id": "116c995e-c4b7-40f5-b84f-068474bbb87c",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Writing to the Terminal with NASM",
+      "dependsOn": [
+        "99787eda-617a-4a68-b9a4-d60ec5c5c303"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "assembly",
+        "NASM",
+        "syscall",
+        "write",
+        "stdout",
+        "Linux"
+      ]
+    },
+    {
+      "@id": "abe720ad-32b4-4303-9b61-5875f592c05c",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Building the CopperSpice KitchenSink Demo",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-16",
+      "keywords": [
+        "CopperSpice",
+        "KitchenSink",
+        "CMake",
+        "C++",
+        "GUI",
+        "Build Process"
+      ]
+    },
+    {
+      "@id": "602e52e7-553e-40a0-a6f6-3ea0c4768835",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Serving Local Directories with Nginx and Server Blocks",
+      "dependsOn": [
+        "b9e34253-61e2-4fb7-bd36-388c370fa765"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-06",
+      "keywords": [
+        "nginx",
+        "localhost",
+        "virtualhosts",
+        "subdomains",
+        "webserver"
+      ]
+    },
+    {
+      "@id": "650920e2-edbe-4dc5-8a0c-96e7d76344e3",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Git: Using Git over SSH on Your Own Remote-Machine",
+      "dependsOn": [
+        "474307f2-a30c-4639-9379-298bf1a4c00b",
+        "8c79cd1f-f6bd-4930-b62c-b2970c412735"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "git",
+        "ssh",
+        "remote",
+        "repository"
+      ]
+    },
+    {
+      "@id": "3d0ad147-62b6-44c1-8263-ad4d8340422a",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "dependsOn": [
+        "5ae3c504-9947-49d3-9dd5-1ac6f9b22a7b"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-12-04",
+      "keywords": [
+        "C++",
+        "CMake",
+        "Linux",
+        "Build systems",
+        "Compilation"
+      ]
+    },
+    {
+      "@id": "ec2d7d19-c8cc-423a-874c-eeacf71d7ab6",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Introduction to SVG Pictures and Markup Editing",
+      "dependsOn": [
+        "2c7334b3-b07d-48d6-a562-79072d8e166e",
+        "facd8210-6a85-4e35-9a6e-fa623319b568"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-04",
+      "keywords": [
+        "SVG",
+        "markup",
+        "graphics",
+        "vector graphics"
+      ]
+    },
+    {
+      "@id": "8bf8a579-c196-4be2-8405-5935123fe66f",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using Neo4j in a Docker Container",
+      "dependsOn": [
+        "d1bee1c7-d88a-4f00-a44e-3e402f6ee826"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-27",
+      "keywords": [
+        "Neo4j",
+        "Docker",
+        "Container",
+        "Persistent Storage",
+        "Graph Database",
+        "Cypher"
+      ]
+    },
+    {
+      "@id": "322ab4aa-737e-4265-83b1-614c893b3753",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using ArangoDB in a Docker Container",
+      "dependsOn": [
+        "d1bee1c7-d88a-4f00-a44e-3e402f6ee826"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-14",
+      "keywords": [
+        "ArangoDB",
+        "Docker",
+        "Multi-Model Database",
+        "Persistent Storage",
+        "Graph Database"
+      ]
+    },
+    {
+      "@id": "cdd3d87d-0e87-4a00-a676-83ca9f245bd7",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Control Sequences and Escape Codes",
+      "dependsOn": [
+        "a2596a91-c7de-477a-bfbb-b08867f1aa89"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-20",
+      "keywords": [
+        "learning",
+        "exercises",
+        "education",
+        "practice",
+        "printf",
+        "escape sequence",
+        "control code"
+      ]
+    },
+    {
+      "@id": "3193c311-8662-4aed-a77a-d595bbf1c1e4",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "ed - Editing in a Line-Based World",
+      "dependsOn": [
+        "341f55bf-db2f-4c98-b7c1-b6b3e6b75ddb"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "ed",
+        "unix",
+        "editor",
+        "cli",
+        "text"
+      ]
+    },
+    {
+      "@id": "845d15ed-1fb2-4b2c-8096-732f29e01c93",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "From `scanf` to `fscanf`: Reading Input from Files",
+      "dependsOn": [
+        "1394df5e-2528-4670-9398-208071d70c1b"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "fscanf",
+        "streams",
+        "C",
+        "input"
+      ]
+    },
+    {
+      "@id": "ba108c71-19c6-4063-b813-fdbbe0b5d775",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "dependsOn": [
+        "a23aa456-d465-4860-b955-676181a511ba"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-12-04",
+      "keywords": [
+        "C++",
+        "CMake",
+        "Subdirectories",
+        "Project structure",
+        "External library directory"
+      ]
+    },
+    {
+      "@id": "21351032-2a40-4101-8c29-513fdaf37365",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Running Commands in a Background Docker-Container",
+      "dependsOn": [
+        "24b25804-5bb5-443f-a78a-1bd485bebed8"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-14",
+      "keywords": [
+        "docker",
+        "background container",
+        "exec",
+        "bash",
+        "volume mount",
+        "startup script"
+      ]
+    },
+    {
+      "@id": "77bccff1-2503-4d3c-8964-6f717ea89b57",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Structuring HTML with Semantic Tags",
+      "dependsOn": [
+        "3ee0acd9-0f99-4423-b4f3-a0ca84a16422"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-13",
+      "keywords": [
+        "HTML",
+        "semantic tags",
+        "vim",
+        "structure",
+        "best practices"
+      ]
+    },
+    {
+      "@id": "75f53c25-f20f-4dfd-b5c4-9251c83d64be",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using SSH Config Files to Manage Connections",
+      "dependsOn": [
+        "SSH"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-03",
+      "keywords": [
+        "SSH",
+        "config",
+        "IdentityFile",
+        "Host alias"
+      ]
+    },
+    {
+      "@id": "c32afdd3-48c3-4ff2-b5f7-a2179a2f8093",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Pointers to `int`, `char`, and `float` in C",
+      "dependsOn": [
+        "df08f299-5635-4e4d-8af1-6323bcf4a828"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-07-03",
+      "keywords": [
+        "C",
+        "pointers",
+        "int",
+        "char",
+        "float",
+        "pointer arithmetic",
+        "address-of",
+        "dereference"
+      ]
+    },
+    {
+      "@id": "3c36ced7-500a-4abe-91ad-b8820b79f1f8",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Writing Effective Acceptance Criteria",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-08",
+      "keywords": [
+        "scrum",
+        "acceptance criteria",
+        "user story",
+        "project management"
+      ]
+    },
+    {
+      "@id": "e2b7c9f1-4d2a-4a3e-9f1b-2c3d4e5f6a7b",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Storing Functions",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Exercise Sheet Assistant"
+        }
+      ],
+      "publishedAt": "2025-05-08",
+      "keywords": [
+        "bash",
+        "source",
+        "functions",
+        "shell scripting",
+        "redirection"
+      ]
+    },
+    {
+      "@id": "0db94e9e-292a-4a1d-abff-b70ac64f398e",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Python project management with uv and pyproject.toml",
+      "dependsOn": [
+        "2d1d315d-bb92-48c0-b19f-19529a45e5ff"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-12-16",
+      "keywords": [
+        "python",
+        "uv",
+        "pyproject.toml",
+        "dependency management",
+        "project setup"
+      ]
+    },
+    {
+      "@id": "bd1f3943-c439-497a-a6a9-513c6ed7ce80",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "The Naive Processor",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-28",
+      "keywords": [
+        "learning",
+        "exercises",
+        "education",
+        "practice"
+      ]
+    },
+    {
+      "@id": "05894bad-a8de-413a-86ce-166579682bbc",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Advanced File Download with `curl`",
+      "dependsOn": [
+        "bae22056-8b3c-4c71-807d-68abc7171b36",
+        "8acee03e-6020-4e3b-86b7-d7747b216258",
+        "b668e389-98db-4777-bc4c-190de535836c",
+        "e8add8e9-7a67-4b50-af89-6c1ce6558e0d"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-02",
+      "keywords": [
+        "curl",
+        "file download",
+        "images",
+        "batch download",
+        "HTTP"
+      ]
+    },
+    {
+      "@id": "2ad3a473-2965-40ad-ab86-891dcfeed508",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "dependsOn": [
+        "3d0ad147-62b6-44c1-8263-ad4d8340422a"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-12-04",
+      "keywords": [
+        "C++",
+        "Header-only library",
+        "CMake",
+        "Project structure"
+      ]
+    },
+    {
+      "@id": "9c17f900-f66c-44e6-9761-fcfba8a2f87d",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Introduction to Vector Potential for Electromagnetic Waves",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-11",
+      "keywords": [
+        "vector potential",
+        "electromagnetism",
+        "EM waves",
+        "Maxwell equations"
+      ]
+    },
+    {
+      "@id": "6908d646-c436-4cc7-8a4a-1f742f8a0533",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Reading, Modifying, and Printing a Character with GAS (GNU Assembly)",
+      "dependsOn": [
+        "e3a451cf-dccf-474b-97d2-17505e309ba0"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "GAS",
+        "syscall",
+        "read",
+        "write",
+        "file descriptor",
+        "ASCII",
+        "Linux"
+      ]
+    },
+    {
+      "@id": "8fd3f76a-24d1-460b-9f88-9ff63809e8f5",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Signal Encoding",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-31",
+      "keywords": [
+        "transmission",
+        "signal",
+        "bit",
+        "bitrate"
+      ]
+    },
+    {
+      "@id": "c1f2cd2b-3ffc-44a8-86b1-111f9d246c10",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Building Your First RESTful API with FastAPI",
+      "dependsOn": [
+        "a0f6c77d-9645-4e6c-80dc-a80608786266",
+        "2d1d315d-bb92-48c0-b19f-19529a45e5ff"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-07",
+      "keywords": [
+        "python",
+        "webtechnology",
+        "REST",
+        "FastAPI"
+      ]
+    },
+    {
+      "@id": "b3531ed1-472f-4448-b60b-c58b9671a0a2",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Memory Layout, RAM Consumption, and Addressing of C Arrays",
+      "dependsOn": [
+        "c32afdd3-48c3-4ff2-b5f7-a2179a2f8093"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-07-03",
+      "keywords": [
+        "C",
+        "arrays",
+        "memory layout",
+        "RAM consumption",
+        "addressing"
+      ]
+    },
+    {
+      "@id": "9264c227-8d04-4a33-bbc7-df86ba0e9a5a",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Functions with Primitive Parameters and Return Types",
+      "dependsOn": [
+        "a29aa0d7-e54c-4927-a4cc-0cd84f3b1032"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-05",
+      "keywords": [
+        "C Functions",
+        "Primitive Datatypes",
+        "Calling Conventions",
+        "Stack Frame",
+        "Parameter Passing"
+      ]
     },
     {
       "@id": "718193ef-11a1-408d-af23-4b10c24d490d",
       "@type": "Exercise",
       "learningResourceType": "Exercise",
+      "teaches": "Introduction to GAS on Linux",
+      "dependsOn": [
+        "2c7334b3-b07d-48d6-a562-79072d8e166e"
+      ],
       "author": [
         {
           "@type": "Person",
@@ -149,13 +2485,571 @@
         "syscall",
         "x86_64",
         "Linux"
+      ]
+    },
+    {
+      "@id": "556cc1c6-a1f0-4008-8a6c-20707bfdd1e8",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Mapping Binary Numbers onto Switches and Relays",
+      "dependsOn": [
+        "cartesian product",
+        "mapping",
+        "functions"
       ],
-      "teaches": "Introduction to GAS on Linux"
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-27",
+      "keywords": [
+        "binary",
+        "digital logic",
+        "relays"
+      ]
+    },
+    {
+      "@id": "25eed4ab-4d42-4ce3-866d-dc2992f713a9",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "A Documentation Workflow: Integrating PlantUML with LaTeX",
+      "dependsOn": [
+        "04c71741-b965-41c0-936d-62f513e73df6",
+        "66726805-4497-4dce-a1ba-ccf930a721f8"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-06",
+      "keywords": [
+        "PlantUML",
+        "documentation",
+        "workflow",
+        "LaTeX",
+        "latexmk",
+        "SVG",
+        "integration"
+      ]
+    },
+    {
+      "@id": "fcef696e-079c-4d83-b611-7b378bb8ac07",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Introduction to the `apt` Package Manager",
+      "dependsOn": [
+        "d58d972d-7730-4b1c-8ec2-a8288ef0ed05",
+        "7f50ba23-f5a6-4bc7-887f-ed9247220544"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        },
+        {
+          "@type": "Person",
+          "name": "Exercise Sheet Assistant"
+        }
+      ],
+      "publishedAt": "2025-05-13",
+      "keywords": [
+        "apt",
+        "dpkg",
+        "linux",
+        "package management",
+        "command line"
+      ]
+    },
+    {
+      "@id": "077e7849-3a02-4e7d-bdc9-c7ad443784fd",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "de Broglie Wavelength and Ionizing Radiation",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-11",
+      "keywords": [
+        "quantum mechanics",
+        "de Broglie wavelength",
+        "ionization energy",
+        "relativistic physics",
+        "wave-particle duality"
+      ]
+    },
+    {
+      "@id": "e46ffb8b-00d6-44a2-ad40-552ea03b4e3a",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Interacting with the Shell: Input, Output & Files",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "shell",
+        "echo",
+        "ls",
+        "cat",
+        "stdout",
+        "stdin",
+        "redirection",
+        "functions",
+        "filesystem"
+      ]
+    },
+    {
+      "@id": "6f3fd64c-8750-4a79-82b7-43b420fb42d4",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using Foreground and Background Colors in the Linux Terminal",
+      "dependsOn": [
+        "cdd3d87d-0e87-4a00-a676-83ca9f245bd7"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-20",
+      "keywords": [
+        "learning",
+        "exercises",
+        "education",
+        "practice",
+        "ANSI escape codes",
+        "terminal colors"
+      ]
+    },
+    {
+      "@id": "a29aa0d7-e54c-4927-a4cc-0cd84f3b1032",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "From Inline Assembly to Libraries: Using Only Local Integers",
+      "dependsOn": [
+        "6e50613d-60e2-40a8-91ae-609e0721f613"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-05",
+      "keywords": [
+        "C Local Variables",
+        "Inline Assembly",
+        "Functions",
+        "Header-Only Library",
+        "Standard Library"
+      ]
+    },
+    {
+      "@id": "81f2e303-d35c-4857-9cb7-190e3c5372b0",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Comparing Object Files from GAS and GCC",
+      "dependsOn": [
+        "718193ef-11a1-408d-af23-4b10c24d490d",
+        "99787eda-617a-4a68-b9a4-d60ec5c5c303",
+        "302c98a7-cbea-435c-ada2-bbf7538429a2"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-02",
+      "keywords": [
+        "Assembler",
+        "C",
+        "Object Files",
+        "Comparison"
+      ]
+    },
+    {
+      "@id": "66726805-4497-4dce-a1ba-ccf930a721f8",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Inserting Figures in LaTeX",
+      "dependsOn": [
+        "00650b50-14de-471d-a347-246f47ffadde",
+        "05894bad-a8de-413a-86ce-166579682bbc"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-02",
+      "keywords": [
+        "LaTeX",
+        "figures",
+        "floats",
+        "images",
+        "vim"
+      ]
+    },
+    {
+      "@id": "186f282c-fe31-4ce9-85eb-6cf61007b610",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using InfluxDB v2 in a Docker Container",
+      "dependsOn": [
+        "d1bee1c7-d88a-4f00-a44e-3e402f6ee826"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-27",
+      "keywords": [
+        "InfluxDB",
+        "Docker",
+        "Container",
+        "Persistent Storage",
+        "Time Series",
+        "Flux"
+      ]
+    },
+    {
+      "@id": "2263c4f5-5034-48fa-beef-3d204473069c",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Parsing Options with `getopt`",
+      "dependsOn": [
+        "5adc24d3-4054-453e-80dd-30a820be8ed3"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-26",
+      "keywords": [
+        "C",
+        "getopt",
+        "optarg",
+        "main",
+        "command-line"
+      ]
+    },
+    {
+      "@id": "8c79cd1f-f6bd-4930-b62c-b2970c412735",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Introduction to Secure Shell Protocol",
+      "dependsOn": [
+        "bccc53a1-ca6e-4995-8ce9-10958bf9e1f9",
+        "2c7334b3-b07d-48d6-a562-79072d8e166e"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-21",
+      "keywords": [
+        "network",
+        "user",
+        "SSH",
+        "administration"
+      ]
+    },
+    {
+      "@id": "a153b035-9e3f-400a-adf8-9934a8887593",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Viewing PDF-Files in xpdf",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-17",
+      "keywords": [
+        "learning",
+        "exercises",
+        "education",
+        "practice"
+      ]
+    },
+    {
+      "@id": "0083b38f-6e8d-492c-975d-25f21e1856ec",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Implementing Mathematical Mappings",
+      "dependsOn": [
+        "0b6b3ce8-418e-4900-ae42-a6d068389a12"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-004-03",
+      "keywords": [
+        "C Language",
+        "math.h",
+        "mappings"
+      ]
+    },
+    {
+      "@id": "4b38b73a-de15-4349-8438-d6c2f5eab6f5",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Definition of Done vs. Definition of Ready",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-08",
+      "keywords": [
+        "scrum",
+        "DoD",
+        "DoR",
+        "Story"
+      ]
+    },
+    {
+      "@id": "35eb6085-0a91-4740-a611-b7f7077e91fc",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Understanding and Using Git Tags",
+      "dependsOn": [
+        "474307f2-a30c-4639-9379-298bf1a4c00b"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-20",
+      "keywords": [
+        "git",
+        "tags",
+        "version control",
+        "local development",
+        "release management"
+      ]
+    },
+    {
+      "@id": "bccc53a1-ca6e-4995-8ce9-10958bf9e1f9",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Creating Users, Managing Groups, and Basic Ownership in *NIX Systems",
+      "dependsOn": [
+        "be5c2a4a-756f-4303-961c-e616e0cdab11"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-12-05",
+      "keywords": [
+        "linux",
+        "adduser",
+        "sudo",
+        "groups",
+        "chown",
+        "permissions"
+      ]
+    },
+    {
+      "@id": "722698f1-d030-4813-ab8a-b9fd0c92bf27",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Git: Using GitHub as a Remote",
+      "dependsOn": [
+        "650920e2-edbe-4dc5-8a0c-96e7d76344e3",
+        "75f53c25-f20f-4dfd-b5c4-9251c83d64be"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-12",
+      "keywords": [
+        "git",
+        "remote",
+        "github",
+        "push",
+        "clone",
+        "ssh config"
+      ]
+    },
+    {
+      "@id": "293aa994-02be-42eb-8859-f7e21029a875",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Advanced SVG: Paths, Gradients, and Filters",
+      "dependsOn": [
+        "ec2d7d19-c8cc-423a-874c-eeacf71d7ab6"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-04",
+      "keywords": [
+        "SVG",
+        "paths",
+        "gradients",
+        "filters",
+        "markup"
+      ]
+    },
+    {
+      "@id": "8d3e51c2-4811-4275-976c-04e3b3215998",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Using the Linux Terminal",
+      "dependsOn": [
+        "c25a4d2d-dd76-4b3c-868f-aaef175c0f89"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-30",
+      "keywords": [
+        "bash",
+        "Linux",
+        "basics"
+      ]
+    },
+    {
+      "@id": "a2596a91-c7de-477a-bfbb-b08867f1aa89",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "printf for constant Strings",
+      "dependsOn": [
+        "302c98a7-cbea-435c-ada2-bbf7538429a2"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-20",
+      "keywords": [
+        "learning",
+        "exercises",
+        "education",
+        "practice",
+        "C",
+        "printf"
+      ]
+    },
+    {
+      "@id": "1394df5e-2528-4670-9398-208071d70c1b",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "From `printf` to `scanf`: Reading Input from Streams",
+      "dependsOn": [
+        "279a01d6-7696-46b7-9cb7-2c44773ad06b"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "scanf",
+        "streams",
+        "C",
+        "input"
+      ]
+    },
+    {
+      "@id": "d23d274a-248e-448e-87d2-1ccba2183f4c",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Cardinality, Functions and Datatypes",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-02",
+      "keywords": [
+        "Functions",
+        "Cardinality",
+        "Datatypes",
+        "Mengenlehre",
+        "C Language"
+      ]
+    },
+    {
+      "@id": "b1d02de5-2283-4672-bcbf-a4c81fcad440",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Intercepting Anchor Clicks with JavaScript",
+      "dependsOn": [
+        "1f867627-725b-40f7-9ecd-d1072c941367"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-13",
+      "keywords": [
+        "HTML",
+        "anchor",
+        "event handling",
+        "JavaScript",
+        "preventDefault"
+      ]
     },
     {
       "@id": "99787eda-617a-4a68-b9a4-d60ec5c5c303",
       "@type": "Exercise",
       "learningResourceType": "Exercise",
+      "teaches": "Introduction to NASM on Linux",
+      "dependsOn": [
+        "2c7334b3-b07d-48d6-a562-79072d8e166e"
+      ],
       "author": [
         {
           "@type": "Person",
@@ -169,8 +3063,252 @@
         "syscall",
         "x86_64",
         "Linux"
+      ]
+    },
+    {
+      "@id": "2ba87074-5f0a-4949-a25c-a34ab7fcce1e",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Simulating Boolean Logic with CircuitVerse",
+      "dependsOn": [
+        "9a437897-663d-442b-82bd-f34643db7e4e"
       ],
-      "teaches": "Introduction to NASM on Linux"
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-27",
+      "keywords": [
+        "boolean logic",
+        "logic simulator",
+        "CircuitVerse",
+        "simulation",
+        "digital logic"
+      ]
+    },
+    {
+      "@id": "02b2f58b-5bbf-4314-966a-bbd25faa9450",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Building a Minimal Angular App",
+      "dependsOn": [
+        "a0f6c77d-9645-4e6c-80dc-a80608786266"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-13",
+      "keywords": [
+        "Angular",
+        "CLI",
+        "modern Angular",
+        "command line",
+        "web development"
+      ]
+    },
+    {
+      "@id": "be5c2a4a-756f-4303-961c-e616e0cdab11",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Users and Groups in *NIX Systems",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-01",
+      "keywords": [
+        "linux",
+        "users",
+        "groups",
+        "permissions",
+        "sudo"
+      ]
+    },
+    {
+      "@id": "2d349b37-ef59-4353-87e2-33896c7d0064",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Writing Mathematics in LaTeX",
+      "dependsOn": [
+        "00650b50-14de-471d-a347-246f47ffadde"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-02",
+      "keywords": [
+        "LaTeX",
+        "mathematics",
+        "equations",
+        "vim",
+        "math mode"
+      ]
+    },
+    {
+      "@id": "61354751-6887-4761-9ef0-ca25d237cf1c",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Identifiers, Types and Variables",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-19",
+      "keywords": [
+        "types",
+        "identifier",
+        "type-system"
+      ]
+    },
+    {
+      "@id": "e2c108ad-125e-45ac-8fe1-d2e3b13f48eb",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Understanding Functors in C++",
+      "dependsOn": [
+        "objects",
+        "operator overloading",
+        "methods"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-05-20",
+      "keywords": [
+        "C++",
+        "Functors",
+        "Function Objects",
+        "Operator Overloading"
+      ]
+    },
+    {
+      "@id": "7130a694-458e-4e24-80b7-d8673f765e69",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Two ways to run python",
+      "dependsOn": [
+        "2c7334b3-b07d-48d6-a562-79072d8e166e"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-07",
+      "keywords": [
+        "python",
+        "REPL"
+      ]
+    },
+    {
+      "@id": "2d1d315d-bb92-48c0-b19f-19529a45e5ff",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Working with libraries in python3",
+      "dependsOn": [
+        "7130a694-458e-4e24-80b7-d8673f765e69"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-04-07",
+      "keywords": [
+        "python",
+        "environment",
+        "venv",
+        "libraries"
+      ]
+    },
+    {
+      "@id": "cc424af3-2bd7-491f-b678-89e18904bf58",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Introduction to Control Flow in C",
+      "dependsOn": [
+        "61354751-6887-4761-9ef0-ca25d237cf1c",
+        "800c7dd9-5ccf-42c1-b9ea-c2764579cf5d"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-12",
+      "keywords": [
+        "C",
+        "control flow",
+        "if",
+        "while",
+        "for",
+        "objdump",
+        "jmp"
+      ]
+    },
+    {
+      "@id": "f09fc4fb-82e5-42a9-837f-9e73c2d2c890",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Working with Redis in C++ using **redis-cpp**",
+      "dependsOn": [],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-06-23",
+      "keywords": [
+        "redis",
+        "cpp",
+        "rediscpp",
+        "CMake FetchContent",
+        "streams",
+        "pubsub"
+      ]
+    },
+    {
+      "@id": "b6701722-9f1e-4fbb-9e1b-6f2dd389f179",
+      "@type": "Exercise",
+      "learningResourceType": "Exercise",
+      "teaches": "Current Based Wired Transmission",
+      "dependsOn": [
+        "8fd3f76a-24d1-460b-9f88-9ff63809e8f5"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stephan Bökelmann"
+        }
+      ],
+      "publishedAt": "2025-03-31",
+      "keywords": [
+        "signal",
+        "encoding",
+        "transmission",
+        "electrons"
+      ]
     }
   ]
 }

@@ -3,19 +3,19 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from collections import defaultdict
 from datetime import datetime
-import base64, copy, json, os, re, requests, time
+import base64, json, os, re, requests, time
 
 
 # initialize global variables
-
 ORG = os.environ['GITHUB_ORG']
 PAT_FILE = os.environ['GITHUB_PAT_FILE']
-STORAGE_DIR = os.environ.get('STORAGE_DIR', '/data/repos')
+STORAGE_DIR = os.environ.get('STORAGE_DIR', '/graph-db/repos')
 METADATA_FILE = os.path.join(STORAGE_DIR, 'metadata.json')
-DATABASE_DIR = os.environ.get('DATABASE_DIR', '/data')
-DATABASE_JSON = os.path.join(DATABASE_DIR, 'challenge_db.json')
-CONTEXT_JSON = os.path.join(DATABASE_DIR, 'graphContext.json')
-
+TEMPLATE_DIR = os.environ.get('TEMPLATE_DIR', '/graph-db/templates')
+LD_CONTEXT_TEMPLATE = os.path.join(TEMPLATE_DIR, 'ld-context.json')
+LD_METADATA_TEMPLATE = os.path.join(TEMPLATE_DIR, 'ld-metadata.json')
+DATABASE_DIR = os.environ.get('DATABASE_DIR', '/graph-db')
+LD_DATABASE = os.path.join(DATABASE_DIR, 'ld-database.json')
 
 # setup the api object
 app = FastAPI()
@@ -31,7 +31,7 @@ def read_root():
 def get_author_count():
     """Returns all authors found along with their frequency."""
     authorCount = {}
-    add_graph_metadata(authorCount)
+    add_ld_metadata(authorCount)
     authorCount["authors"] = get_count("author", subfield="name", lowercase=False)
     return authorCount
 
@@ -39,7 +39,7 @@ def get_author_count():
 def get_author_list():
     """Returns a list with the names of all authors found in the database."""
     authorList = {}
-    add_graph_metadata(authorList)
+    add_ld_metadata(authorList)
     authorList["authors"] = get_list("author", subfield="name", lowercase=False)
     return authorList
 
@@ -93,7 +93,7 @@ def get_exercises_by_topic(topic: str):
 def get_keyword_count():
     """Returns all keywords found along with their frequency."""
     keywordCount = {}
-    add_graph_metadata(keywordCount)
+    add_ld_metadata(keywordCount)
     keywordCount["keywords"] = get_count("keywords")
     return keywordCount
 
@@ -101,7 +101,7 @@ def get_keyword_count():
 def get_keyword_list():
     """Returns a list with all keywords found in the database."""
     keywordList = {}
-    add_graph_metadata(keywordList)
+    add_ld_metadata(keywordList)
     keywordList["keywords"] = get_list("keywords")
     return keywordList
 
@@ -118,7 +118,7 @@ def get_path_to_exercise(uuid: str):
 def get_statistics():
     """Returns several statistics about the graph."""
     stats = {}
-    add_graph_metadata(stats)
+    add_ld_metadata(stats)
     stats["@type"] = "Statistics"
     stats["keywordCountDistinct"] = len(get_list("keywords"))
     stats["keywordCountTotal"] = sum(get_count("keywords").values())
@@ -129,7 +129,7 @@ def get_statistics():
 @app.get("/getWholeGraph")
 def get_whole_graph():
     """Returns the whole graph, i.e. database."""
-    with open(DATABASE_JSON, 'r', encoding='utf-8') as f:
+    with open(LD_DATABASE, 'r', encoding='utf-8') as f:
         wholeGraph = json.load(f)
     return wholeGraph 
 
@@ -180,8 +180,8 @@ async def refresh_database(background_tasks: BackgroundTasks):
 def init_graph():
     """Returns an empty graph framework."""
     graph = {}
-    add_graph_context(graph)
-    add_graph_metadata(graph)
+    add_ld_context(graph)
+    add_ld_metadata(graph)
     graph["@graph"] = []
     return graph
 
@@ -298,21 +298,6 @@ def add_exercise(data, uuid, visited):
         if ex is not None:
             data["@graph"].append(ex)
             expand_dependencies(data, ex, visited)
-
-def add_graph_context(data):
-    """Gets context data from local context file and adds it to the data."""
-    with open(CONTEXT_JSON) as context_file:
-        context = json.load(context_file)
-    data["@context"] = context["@context"]
-
-def add_graph_metadata(data):
-    """Adds metadata (url, created at & by) to the data."""
-    data["@id"] = "https://stemgraph-api.boekelmann.net/"
-    data["generatedBy"] = {}
-    data["generatedBy"]["@type"] = "schema:Organization"
-    data["generatedBy"]["schema:name"] = "STEMgraph"
-    data["generatedBy"]["schema:url"] = "https://github.com/STEMgraph"
-    data["generatedAt"] = now()
 
 
 # lightweight and error functions
@@ -441,22 +426,22 @@ def createdb_jsonld():
             node = transform_challenge_metadata(challenge_metadata) 
             nodes.append(node)
     db_jsonld["@graph"] = nodes
-    with open(DATABASE_JSON, 'w', encoding='utf-8') as f:
+    with open(LD_DATABASE, 'w', encoding='utf-8') as f:
         json.dump(db_jsonld, f, ensure_ascii=False, indent=2)
 
 def add_ld_context(db_jsonld):
     """Gets context data from local context file."""
-    with open(CONTEXT_JSON) as context_file:
+    with open(LD_CONTEXT_TEMPLATE) as context_file:
         context = json.load(context_file)
     db_jsonld["@context"] = context["@context"]
 
 def add_ld_metadata(db_jsonld):
     """Creates metadata (url, created at & by)."""
-    db_jsonld["@id"] = "https://stemgraph-api.boekelmann.net/getWholeGraph"
+    db_jsonld["@id"] = "https://stemgraph-api.boekelmann.net/"
     db_jsonld["generatedBy"] = {}
     db_jsonld["generatedBy"]["@type"] = "schema:Organization"
     db_jsonld["generatedBy"]["schema:name"] = "STEMgraph"
-    db_jsonld["generatedBy"]["schema:url"] = "https://github.com/STEMgraph"
+    db_jsonld["generatedBy"]["schema:url"] = "https://github.com/STEMgraph/"
     db_jsonld["generatedAt"] = now()
 
 def transform_challenge_metadata(md_json):

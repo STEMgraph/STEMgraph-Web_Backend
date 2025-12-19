@@ -1,5 +1,0 @@
-GITHUB_ORG=
-GITHUB_PAT_FILE=/run/secrets/github_pat
-DATABASE_DIR=/data
-STORAGE_DIR=/data/repos
-PORT=8000
