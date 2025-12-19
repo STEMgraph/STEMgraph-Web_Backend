@@ -46,26 +46,18 @@ def get_author_list():
     return authorList
 
 @app.get("/getEndNodes")
-def get_end_nodes():
+def get_end_nodes(format: str = Query("json", enum=["json", "json-ld"])):
     """Returns all nodes that are not referenced by others (end points / final lessons)."""
-    referenced_ids = set()
-    db = get_ld_graph()
-    for ex in db["@graph"]:
-        if ex.get("dependsOn"):
-            for dep in ex["dependsOn"]:
-                if isinstance(dep, str):
-                    referenced_ids.add(dep)
-                elif isinstance(dep, dict):
-                    if dep.get("@id"):
-                        referenced_ids.add(dep["@id"])
-                    if dep.get("oneOf"):
-                        for alt in dep["oneOf"]:
-                            referenced_ids.add(alt)
-    ends = init_ld_graph()
-    for ex in db["@graph"]:
-        if ex["@id"] not in referenced_ids:
-            ends["@graph"].append(ex)
-    return ends
+    if format == "json":
+        end_nodes = get_nl_end_nodes()
+        if isinstance(end_nodes, JSONResponse):
+            return end_nodes
+        return JSONResponse(content=end_nodes, media_type="application/json")
+    elif format == "json-ld":
+        end_nodes = get_ld_end_nodes()
+        if isinstance(end_nodes, JSONResponse):
+            return end_nodes
+        return JSONResponse(content=end_nodes, media_type="application/ld+json")
 
 @app.get("/getExercise/{uuid}")
 def get_exercise(uuid: str, format: str = Query("json", enum=["json", "json-ld"])):
@@ -173,15 +165,18 @@ def get_path_to_exercise(uuid: str, format: str = Query("json", enum=["json", "j
         return JSONResponse(content=path, media_type="application/ld+json")
 
 @app.get("/getStartNodes")
-def get_start_nodes():
+def get_start_nodes(format: str = Query("json", enum=["json", "json-ld"])):
     """Returns all nodes that have no dependencies (entry points / starting lessons)."""
-    starts = init_ld_graph()
-    db = get_ld_graph()
-    for ex in db["@graph"]:
-        deps = ex.get("dependsOn", [])
-        if not deps or len(deps) == 0:
-            starts["@graph"].append(ex)
-    return starts
+    if format == "json":
+        starts = get_nl_start_nodes()
+        if isinstance(starts, JSONResponse):
+            return starts
+        return JSONResponse(content=starts, media_type="application/json")
+    elif format == "json-ld":
+        starts = get_ld_start_nodes()
+        if isinstance(starts, JSONResponse):
+            return starts
+        return JSONResponse(content=starts, media_type="application/ld+json")
 
 @app.get("/getStatistics")
 def get_statistics():
@@ -353,6 +348,32 @@ def get_nl_exercises_by_tag(field: str, search: str, subfield: str = None, match
     add_nl_links(exTagged)
     return exTagged
 
+def get_nl_end_nodes():
+    """Returns all nodes that are not referenced by others (end points / final lessons)."""
+    referenced_ids = set()
+    db = get_nl_graph()
+    for link in db["links"]:
+        referenced_ids.add(link["source"])
+    ends = init_nl_graph()
+    for ex in db["nodes"]:
+        if ex["id"] not in referenced_ids:
+            ends["nodes"].append(ex)
+    add_nl_links(ends)
+    return ends
+
+def get_nl_start_nodes():
+    """Returns all nodes that have no dependencies (entry points / starting lessons)."""
+    dependent_ids = set()
+    db = get_nl_graph()
+    for link in db["links"]:
+        dependent_ids.add(link["target"])
+    starts = init_nl_graph()
+    for ex in db["nodes"]:
+        if ex["id"] not in dependent_ids:
+            starts["nodes"].append(ex)
+    add_nl_links(starts)
+    return starts
+
 
 # auxiliary graph manipulation subroutines for JSON-LD graphs
 
@@ -445,19 +466,36 @@ def add_ld_exercise(data, uuid, visited):
             data["@graph"].append(ex)
             expand_ld_dependencies(data, ex, visited)
 
+def get_ld_end_nodes():
+    """Returns all nodes that are not referenced by others (end points / final lessons)."""
+    referenced_ids = set()
+    db = get_ld_graph()
+    for ex in db["@graph"]:
+        if ex.get("dependsOn"):
+            for dep in ex["dependsOn"]:
+                if isinstance(dep, str):
+                    referenced_ids.add(dep)
+                elif isinstance(dep, dict):
+                    if dep.get("@id"):
+                        referenced_ids.add(dep["@id"])
+                    if dep.get("oneOf"):
+                        for alt in dep["oneOf"]:
+                            referenced_ids.add(alt)
+    ends = init_ld_graph()
+    for ex in db["@graph"]:
+        if ex["@id"] not in referenced_ids:
+            ends["@graph"].append(ex)
+    return ends
 
-# lightweight and error functions
-
-def now():
-    """Gets the current timestamp."""
-    return datetime.utcnow().isoformat() + "Z"
-
-def error_notFound(field, value):
-    """Returns a customized error message for searches with no result."""
-    return JSONResponse(
-        status_code=status.HTTP_404_NOT_FOUND,
-        content={"error": f"No exercises found for {field}: '{value}'"}
-    )
+def get_ld_start_nodes():
+    """Returns all nodes that have no dependencies (entry points / starting lessons)."""
+    starts = init_ld_graph()
+    db = get_ld_graph()
+    for ex in db["@graph"]:
+        deps = ex.get("dependsOn", [])
+        if not deps or len(deps) == 0:
+            starts["@graph"].append(ex)
+    return starts
 
 
 # auxiliary functions to build / update the database cache
@@ -620,7 +658,7 @@ def transform_challenge_metadata_to_ld(md_json):
     return node
 
 
-# routines to create the json-database from the challenge-metadata files
+# routines to create the node-link-database from the challenge-metadata files
 # (for use with e.g. https://github.com/vasturiano/3d-force-graph)
 
 def createdb_jsonnl():
@@ -671,3 +709,17 @@ def get_links_from_challenge_metadata(md_json):
                 }
             links.append(link)
     return links
+
+
+# lightweight and error functions
+
+def now():
+    """Gets the current timestamp."""
+    return datetime.utcnow().isoformat() + "Z"
+
+def error_notFound(field, value):
+    """Returns a customized error message for searches with no result."""
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={"error": f"No exercises found for {field}: '{value}'"}
+    )
