@@ -8,7 +8,7 @@ import base64, json, os, re, requests, time
 
 # initialize global variables
 ORG = os.environ['GITHUB_ORG']
-PAT_FILE = os.environ['GITHUB_PAT_FILE']
+GITHUB_PAT = os.environ['GITHUB_PAT']
 STORAGE_DIR = os.environ.get('STORAGE_DIR', '/graph-db/repos')
 METADATA_FILE = os.path.join(STORAGE_DIR, 'metadata.json')
 TEMPLATE_DIR = os.environ.get('TEMPLATE_DIR', '/graph-db/templates')
@@ -501,8 +501,7 @@ def get_ld_start_nodes():
 # auxiliary functions to build / update the database cache
 
 def get_pat():
-    with open(PAT_FILE, 'r') as f:
-        return f.read().strip()
+    return GITHUB_PAT
 
 def list_org_repos(token):
     url = f'https://api.github.com/orgs/{ORG}/repos?per_page=100'
