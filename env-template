@@ -5,7 +5,7 @@ STORAGE_DIR=/graph-db/repos
 TEMPLATE_DIR=/graph-db/templates
 PORT=8000
 
-KEYCLOAK_URL=https://demo-keycloak.your.domain/
+KEYCLOAK_URL=https://demo-keycloak.your.domain
 REALM=your-realm-name
 CLIENT_ID=your-client-ID
 CLIENT_SECRET="your-client-secret"
