@@ -1,13 +1,16 @@
+from datetime import datetime
+from fastapi.responses import JSONResponse
+from fastapi import status
+
 # Dateioperationen
 
-def ensure_metadata():
-    pass
-
-def save_metadata(meta):
-    pass
-
 def now():
-    pass
+    """Gets the current timestamp."""
+    return datetime.utcnow().isoformat() + "Z"
 
 def error_notFound(field, value):
-    pass
+    """Returns a customized error message for searches with no result."""
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={"error": f"No exercises found for {field}: '{value}'"}
+    )
