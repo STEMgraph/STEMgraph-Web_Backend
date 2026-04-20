@@ -16,9 +16,10 @@ A FastAPI solution for [STEMgraph](https://github.com/STEMgraph).
 ### ... locally for development and testing purposes
 
 - Clone this repository to your local workstation.
-- Create a folder called `secrets` in your local working directory.
+- Copy `env-template` as `.env`.
+- In the `.env` file, remove all lines after the first blank line.
 - Create a GitHub **Personal access token**. A **Fine-grained token** with **Read-only access to public repositories** is recommended.
-- Store the token as plain text in `secrets/github.pat`.
+- In the `.env` file, enter the access token as the value for the `GITHUB_PAT`environment variable.
 - Run `docker compose up --build`.
 
 The API is now up and running at `http://localhost:8000/docs`.

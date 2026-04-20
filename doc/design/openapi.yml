@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: STEMgraph API
+  version: 1.0.0
+
+paths:
+
+  /exercises:
+    get:
+      summary: List all exercises
+      parameters:
+        - in: query
+          name: author
+          schema: { type: string }
+        - in: query
+          name: keyword
+          schema: { type: string }
+        - in: query
+          name: topic
+          schema: { type: string }
+        - in: query
+          name: match
+          schema:
+            type: string
+            enum: [exact, partial]
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [jsonld, nodelink, xml]
+      responses:
+        "200":
+          description: List of exercises
+
+  /exercises/{uuid}:
+    get:
+      summary: Get a single exercise
+      parameters:
+        - in: path
+          name: uuid
+          required: true
+          schema: { type: string }
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [jsonld, nodelink]
+      responses:
+        "200":
+          description: Exercise node
+
+  /exercises/{uuid}/path:
+    get:
+      summary: Get dependency path to exercise
+
+  /exercises/start-nodes:
+    get:
+      summary: List start nodes
+
+  /exercises/end-nodes:
+    get:
+      summary: List end nodes
+
+  /authors:
+    get:
+      summary: List all authors
+
+  /authors/count:
+    get:
+      summary: Count authors
+
+  /keywords:
+    get:
+      summary: List all keywords
+
+  /keywords/count:
+    get:
+      summary: Count keywords
+
+  /graph/statistics:
+    get:
+      summary: Graph statistics
+
+  /graph/whole:
+    get:
+      summary: Whole graph
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [jsonld, nodelink]
+
+  /admin/refresh:
+    post:
+      summary: Refresh database from GitHub

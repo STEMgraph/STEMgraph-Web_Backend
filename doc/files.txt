@@ -1,0 +1,37 @@
+src/
+│
+├── main.py
+├── config.py
+│
+├── api/
+│   ├── exercises.py
+│   ├── authors.py
+│   ├── keywords.py
+│   ├── graph.py
+│   └── admin.py
+│
+├── services/
+│   ├── graph_ld.py          # einzige Primärdatenbank
+│   ├── graph_nl.py          # Node-Link aus LD ableiten
+│   ├── updater.py           # erzeugt NUR JSON-LD
+│   ├── storage.py           # Dateioperationen
+│   └── filters.py           # Filterlogik (Author, Keyword, Topic)
+│
+├── formats/
+│   ├── base_export.py       # gemeinsames Interface
+│   ├── jsonld_export.py     # nutzt graph_ld
+│   ├── nodelink_export.py   # nutzt graph_nl
+│   └── xml_export.py        # nutzt graph_ld
+│
+├── logging/
+│   ├── logger.py
+│   └── middleware.py
+│
+├── models/
+│   └── exercise.py          # optional
+│
+└── tests/
+    ├── test_api.py
+    ├── test_services.py
+    └── test_formats.py
+

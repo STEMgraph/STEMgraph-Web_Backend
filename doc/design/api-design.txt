@@ -1,0 +1,200 @@
+# Resources - Object Modeling
+
+- Exercises
+- Authors
+- Keywords
+- Database
+
+
+# Model URIs
+
+/exercises				// get all exercises; count is returned in header
+/exercises/{ex-uuid}			// get exercise for given uuid
+/exercises/{ex-uuid}/authors		// get all authors of exercise; count is returned in header
+/exercises/{ex-uuid}/dependencies	// get all dependencies of exercise; count is returned in header
+/exercises/{ex-uuid}/keywords		// get all keywords of exercise; count is returned in header
+/exercises/{ex-uuid}/path-to		// get path (all exercises) leading to uuid
+
+/authors				// get all authors; count is returned in header
+/authors/{name} // get author by name
+
+/keywords				// get all keywords; count is returned in header
+/keywords/{}
+
+/admin/database				// create (put?) new update-db task
+					// no db: create new; else update
+					// get: get statistics
+
+possible parameters for /exercises:
+- author={name}
+- dependency={uuid}
+- keyword={keyword}
+- topic={topic}
+- match=[exact|partial]
+- initial=[true|false]
+- final=[true|false]
+- format=[json-ld|json|xml...]
+
+
+# Resource Representations
+
+Markdown: (source)
+<!---
+{
+  "id": "722698f1-d030-4813-ab8a-b9fd0c92bf27",
+  "teaches": "Git: Using GitHub as a Remote",
+  "depends_on": ["650920e2-edbe-4dc5-8a0c-96e7d76344e3","75f53c25-f20f-4dfd-b5c4-9251c83d64be"],
+  "author": "Stephan Bökelmann",
+  "first_used": "2025-04-12",
+  "keywords": ["git", "remote", "github", "push", "clone", "ssh config"]
+}
+--->
+
+
+- Author
+
+JSON: (media type: application/json)
+{
+  "id": "stephan-boekelmann",
+  "type": "Person",
+  "authored": [
+    { "id": "7226...", "url": "/exercises/7226..." },
+    { "id": "b1d0...", "url": "/exercises/b1d0..." },
+    { "id": "a0f6...", "url": "/exercises/a0f6..." }
+  ],
+  "authoredCount": 3,
+  "links": {
+    "self": "/authors/stephan-boekelmann",
+    "exercises": "/exercises?author=stephan-boekelmann"
+  },
+  "name": "Stephan Bökelmann",
+  "url": "https://stemgraph-api.boekelmann.net/author/stephan-boekelmann"
+}
+
+JSON-LD: (media type: application/ld+json)
+{
+  "@context": {
+    "@base": "https://stemgraph-api.boekelmann.net",
+    "@language": "en",
+    "@version": 1.1,
+    "schema": "https://schema.org",
+    "Author": "schema:Person",
+    "authored": { "@id": "/vocab/authored", "@type": "@id" },
+    "authoredCount": { "@id": "/vocab/authoredCount", "@type": "schema:Number" },
+    "exercises": { "@id": "schema:relatedLink", "@type": "@id" },
+    "name": { "@id": "schema:name", "@type": "schema:Text" }
+  },
+  "@id": "/authors/stephan-boekelmann",
+  "@type": "Author",
+  "authored": ["/exercises/7226...", "/exercises/b1d0...", "/exercises/a0f6..."],
+  "authoredCount": 3,
+  "exercises": "/exercises?author=stephan-boekelmann",
+  "name": "Stephan Bökelmann"
+}
+
+XML: (media type: application/xml)
+<author id="stephan-boekelmann" url="https://stemgraph-api.boekelmann.net/author/stephan-boekelmann">
+  <authored>
+    <exerciseRef id="7226...">
+      <link rel="self" href="/exercises/7226..." />
+    </exerciseRef>
+    <exerciseRef id="b1d0...">
+      <link rel="self" href="/exercises/b1d0..." />
+    </exerciseRef>
+    <exerciseRef id="a0f6...">
+      <link rel="self" href="/exercises/a0f6..." />
+    </exerciseRef>
+  </authored>
+  <authoredCount>3</authoredCount>
+  <name>Stephan Bökelmann</name>
+</author>
+
+
+- Exercise
+
+JSON: (media type: application/vnd.stemgraph.graph+json)
+{
+  "nodes": [
+    {
+      "id": "7226...",
+      "type": "Exercise",
+      "authors": [
+        { "id": "stephan-boekelmann", "url": "/author/stephan-boekelmann" }
+      ],
+      "keywords": ["git", "remote", ...],
+      "learningResourceType": "challenge",
+      "links": {
+        "self": "/exercises/7226...",
+        "authors": "/authors?exercise=7226...",
+        "keywords": "/keywords?exercise=7226..."
+      }
+      "publishedAt": "2025-04-12",
+      "teaches": "Git: Using GitHub as a Remote",
+      "url": "/exercises/7226..."
+    }
+  ],
+  "links": [
+    { "source": "7226...", "target": "6509..." },
+    { "source": "7226...", "target": "75f5..." }
+  ]
+}
+
+JSON-LD: (media type: application/ld+json)
+{
+  "@context": {
+    "@base": "https://stemgraph-api.boekelmann.net/exercises",
+    "@language": "en",
+    "@version": 1.1,
+    "schema": "https://schema.org",
+    "Exercise": "schema:LearningResource",
+    "authors": { "@id": "schema:name", "@type": "@id" },
+    "dependsOn": { "@id": "schema:competencyRequired", "@type": "@id" },
+    "keywords": { "@id": "schema:keywords", "@type": "schema:Text" },
+    "learningResourceType": { "@id": "schema:learningResourceType", "@type": "schema:Text" },
+    "publishedAt": { "@id": "schema:datePublished", "@type": "schema:Date" },
+    "teaches": { "@id": "schema:teaches", "@type": "schema:Text" }
+  },
+  "@id": "/exercises/7226...",
+  "@type": "Exercise",
+  "authors": ["/authors/stephan-boekelmann"],
+  "dependsOn": ["/exercises/6509...", "/exercises75f5..."],
+  "keywords": ["git", "remote", ...],
+  "learningResourceType": "challenge",
+  "publishedAt": "2025-04-12",
+  "teaches": "Git: Using GitHub as a Remote"
+}
+
+XML: (media type: application/xml)
+<exercise id="7226..." url="https://stemgraph-api.boekelmann.net/7226...">
+  <authors>
+    <authorRef id="stephan-boekelmann">
+      <link rel="self" href="/authors/stephan-boekelmann">
+    </authorRef>
+  </authors>
+  <dependsOn>
+    <exerciseRef id="6509...">
+      <link rel="self" href="/exercises/6509..." />
+    </exerciseRef>
+    <exerciseRef id="75f5...">
+      <link rel="self" href="/exercises/75f5..." />
+    </exerciseRef>
+  </dependsOn>
+  <keywords>
+    <keyword>git</keyword>
+    <keyword>remote</keyword>
+    <keyword>github</keyword>
+    <keyword>push</keyword>
+    <keyword>clone</keyword>
+    <keyword>ssh config</keyword>
+  </keywords>
+  <link rel="self" href="/exercises/7226..." />
+  <learningResourceType>challenge</learningResourceType>
+  <publishedAt>
+    <year>2025</year>
+    <month>04</month>
+    <day>12</day>
+  </publishedAt>
+  <teaches>Git: Using GitHub as a Remote</teaches>
+</exercise>
+
+

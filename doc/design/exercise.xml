@@ -1,0 +1,17 @@
+<exercise id="{uuid}">
+	<link rel="self" href="/exercises/{uuid}" />
+	<topic>{topic}</topic>
+	<publishedAt>
+		<year>{year}</year>
+		<month>{month}</month>
+		<day>{day}</day>
+	</publishedAt>
+	<author>{name-1}</author>
+	<author>{name-n}</author>
+	<keyword>{keyword-1}</keyword>
+	<keyword>{keyword-n}</keyword>
+	<dependency id="{dep_uuid}">
+		<link rel="self" href="/exercises/{dep_uuid}" />
+	</dependency>
+</exercise>
+
