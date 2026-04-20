@@ -100,3 +100,4 @@ def refresh_challenge_db_task():
         print("All metadata from STEMgraph challenges fetched.")
         createdb_jsonld()
         print("Database created as JSON-LD.")
+
