@@ -1,9 +1,10 @@
 # JSON-LD Primärdatenbank
 
-import json, os
+from fastapi import status
 from fastapi.responses import JSONResponse
+from datetime import datetime
+import json, os
 from config import STORAGE_DIR, LD_DATABASE, LD_CONTEXT_TEMPLATE
-from services.storage import now, error_notFound
 
 
 # auxiliary graph manipulation subroutines for JSON-LD graphs
@@ -185,3 +186,17 @@ def transform_challenge_metadata_to_ld(md_json):
     if "keywords" in md_json:
         node["keywords"] = md_json["keywords"]
     return node
+
+
+# Hilfsfunktionen
+
+def now():
+    """Gets the current timestamp."""
+    return datetime.utcnow().isoformat() + "Z"
+
+def error_notFound(field, value):
+    """Returns a customized error message for searches with no result."""
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={"error": f"No exercises found for {field}: '{value}'"}
+    )

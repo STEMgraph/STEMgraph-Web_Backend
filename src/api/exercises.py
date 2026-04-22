@@ -2,7 +2,6 @@ from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
 from services.exporter import export_graph
 import services.graph_ld
-import services.storage
 
 
 router = APIRouter(prefix="/exercises", tags=["exercises"])

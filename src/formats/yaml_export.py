@@ -8,12 +8,3 @@ class YamlExporter(GraphExporter):
         Konvertiert JSON-LD Daten in YAML-Format.
         """
         return yaml.dump(ld_data, allow_unicode=True, default_flow_style=False)
-
-    def load(self):
-        raise NotImplementedError()
-
-    def filter(self, **criteria):
-        raise NotImplementedError()
-
-    def export(self):
-        raise NotImplementedError()
