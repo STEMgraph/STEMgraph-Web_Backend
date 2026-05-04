@@ -11,7 +11,6 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from log_handling.logger import init_logger
 from log_handling.log_db import init_log_db, rotate_logs
-from log_handling.sqlite_handler import SQLiteHandler
 
 
 # ---------------------------------------------------------
@@ -140,4 +139,3 @@ def test_log_rotation(temp_log_db):
     assert final_count < initial_count, "Rotation sollte Logs löschen"
     assert final_count > 0, "Nicht alle Logs sollten gelöscht werden"
     print(f"Rotation: {initial_count} → {final_count} Logs")
-
