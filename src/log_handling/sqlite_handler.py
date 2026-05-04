@@ -2,7 +2,7 @@ import logging
 import json
 import sqlite3
 from datetime import datetime
-from services.log_db import LOG_DB_PATH
+from log_handling.log_db import LOG_DB_PATH
 
 class SQLiteHandler(logging.Handler):
     def __init__(self):

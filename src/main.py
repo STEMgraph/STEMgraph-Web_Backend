@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from services.log_db import init_log_db, rotate_logs
-from services.logger import init_logger
-from middleware.logging_middleware import logging_middleware
+from log_handling.log_db import init_log_db, rotate_logs
+from log_handling.logger import init_logger
+from log_handling.logging_middleware import logging_middleware
 
 from api import exercises, authors, keywords, graph, admin
 

@@ -1,6 +1,6 @@
 import logging
 from config import LOG_CONSOLE
-from services.sqlite_handler import SQLiteHandler
+from log_handling.sqlite_handler import SQLiteHandler
 
 def init_logger():
     logger = logging.getLogger()
