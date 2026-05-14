@@ -19,7 +19,7 @@ app = FastAPI()
 app.middleware("http")(logging_middleware)
 app.add_middleware(
     CORSMiddleware, 
-    allow_origins=["https://stemgraph.boekelmann.net"], 
+    allow_origins=["http://46.225.104.187/"], 
     allow_credentials=True, 
     allow_methods=["*"], 
     allow_headers=["*"]
