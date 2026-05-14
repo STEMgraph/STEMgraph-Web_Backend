@@ -1,0 +1,665 @@
+openapi: 3.1.0
+
+info:
+  title: STEMgraph API
+  description: |
+    A RESTful API for accessing and managing a graph-based database of STEM exercises and their dependencies.
+    
+    The API provides access to a JSON-LD database of educational exercises with support for:
+    - **Multiple export formats**: JSON-LD, Node-Link JSON, YAML
+    - **Filtering**: By author, keyword, topic with exact/partial matching
+    - **Graph traversal**: Find dependencies, starting/ending points
+    - **Metadata aggregation**: Authors, keywords, and graph statistics
+    
+    All data is persisted in JSON-LD format for semantic interoperability.
+  version: 1.0.0
+  contact:
+    name: STEMgraph Project
+    url: https://github.com/STEMgraph
+  license:
+    name: MIT License
+
+servers:
+  - url: http://localhost:8000
+    description: Development server
+  - url: https://stemgraph-api.boekelmann.net
+    description: Production server
+
+tags:
+  - name: exercises
+    description: Exercise management and querying
+  - name: graph
+    description: Graph statistics and exports
+  - name: authors
+    description: Author metadata
+  - name: keywords
+    description: Keyword metadata
+  - name: admin
+    description: Administrative operations
+
+paths:
+  /:
+    get:
+      summary: API root
+      description: Returns a greeting message
+      operationId: read_root
+      tags:
+        - root
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /exercises:
+    get:
+      summary: List exercises with optional filters
+      description: |
+        Retrieve a list of exercises from the database with optional filtering by author, keyword, or topic.
+        Results can be returned in multiple formats (JSON-LD, Node-Link, YAML).
+        
+        Filtering supports both exact and partial matching modes.
+      operationId: list_exercises
+      tags:
+        - exercises
+      parameters:
+        - name: author
+          in: query
+          description: Filter by author name
+          required: false
+          schema:
+            type: string
+          example: John Doe
+        - name: keyword
+          in: query
+          description: Filter by keyword
+          required: false
+          schema:
+            type: string
+          example: Python
+        - name: topic
+          in: query
+          description: Filter by topic (from 'teaches' field)
+          required: false
+          schema:
+            type: string
+          example: Functions
+        - name: match
+          in: query
+          description: Matching mode for filters
+          required: false
+          schema:
+            type: string
+            enum: [exact, partial]
+            default: exact
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [jsonld, nodelink, yaml]
+            default: jsonld
+      responses:
+        "200":
+          description: List of exercises in requested format
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/JsonLdGraph'
+                  - $ref: '#/components/schemas/NodeLinkGraph'
+            application/yaml:
+              schema:
+                type: object
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/JsonLdGraph'
+          examples:
+            jsonld:
+              value:
+                "@context": "https://www.w3.org/2019/wot/security/v1"
+                "@graph":
+                  - "@id": "ex:12345678-1234-1234-1234-123456789012"
+                    "@type": "Exercise"
+                    name: "Introduction to Python"
+                    keywords: ["Python", "Basics"]
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /exercises/start-nodes:
+    get:
+      summary: Get exercises with no dependencies
+      description: |
+        Returns exercises that have no incoming dependencies (starting points in the learning graph).
+        Useful for recommending entry-level exercises.
+      operationId: get_start_nodes
+      tags:
+        - exercises
+      parameters:
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [jsonld, nodelink, yaml]
+            default: jsonld
+      responses:
+        "200":
+          description: Graph of start exercises
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonLdGraph'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /exercises/end-nodes:
+    get:
+      summary: Get exercises with no outgoing dependencies
+      description: |
+        Returns exercises that have no outgoing dependencies (endpoints in the learning graph).
+        These are exercises that lead nowhere else, typically advanced topics.
+      operationId: get_end_nodes
+      tags:
+        - exercises
+      parameters:
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [jsonld, nodelink, yaml]
+            default: jsonld
+      responses:
+        "200":
+          description: Graph of end exercises
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonLdGraph'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /exercises/{uuid}:
+    get:
+      summary: Get a single exercise
+      description: |
+        Retrieve a specific exercise by its UUID.
+        Returns a graph with the single exercise node.
+      operationId: get_exercise
+      tags:
+        - exercises
+      parameters:
+        - name: uuid
+          in: path
+          description: Exercise UUID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: 12345678-1234-1234-1234-123456789012
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [jsonld, nodelink, yaml]
+            default: jsonld
+      responses:
+        "200":
+          description: Exercise node in requested format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonLdGraph'
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /exercises/{uuid}/path:
+    get:
+      summary: Get dependency path to exercise
+      description: |
+        Returns the complete dependency path (prerequisites chain) leading up to the specified exercise.
+        Shows all exercises that must be completed before this one.
+      operationId: get_path_to_exercise
+      tags:
+        - exercises
+      parameters:
+        - name: uuid
+          in: path
+          description: Exercise UUID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: 12345678-1234-1234-1234-123456789012
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [jsonld, nodelink, yaml]
+            default: jsonld
+      responses:
+        "200":
+          description: Dependency path graph
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonLdGraph'
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /graph:
+    get:
+      summary: Get the complete graph
+      description: |
+        Retrieve the entire exercises graph with all nodes and relationships.
+        Warning: This may be a large response for production databases.
+      operationId: get_whole_graph
+      tags:
+        - graph
+      parameters:
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [jsonld, nodelink, yaml]
+            default: jsonld
+      responses:
+        "200":
+          description: Complete graph
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonLdGraph'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /graph/statistics:
+    get:
+      summary: Get graph statistics
+      description: |
+        Retrieve aggregated statistics about the graph including:
+        - Total number of exercises
+        - Number of unique/total keywords
+        - Metadata timestamps
+      operationId: get_statistics
+      tags:
+        - graph
+      responses:
+        "200":
+          description: Graph statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statistics'
+              example:
+                "@context": "https://www.w3.org/2019/wot/security/v1"
+                "@type": "Statistics"
+                nodeCount: 42
+                keywordCountDistinct: 15
+                keywordCountTotal: 87
+                created: "2024-01-01T00:00:00Z"
+                modified: "2024-05-07T12:00:00Z"
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /authors:
+    get:
+      summary: List all unique authors
+      description: |
+        Retrieve a list of all unique authors in the database with metadata.
+      operationId: list_authors
+      tags:
+        - authors
+      responses:
+        "200":
+          description: List of authors
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  "@context":
+                    type: string
+                  "@type":
+                    type: string
+                  authors:
+                    type: array
+                    items:
+                      type: string
+              example:
+                "@context": "https://www.w3.org/2019/wot/security/v1"
+                "@type": "AuthorList"
+                authors:
+                  - John Doe
+                  - Jane Smith
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /authors/count:
+    get:
+      summary: Get author frequency count
+      description: |
+        Returns a count of how many exercises each author has contributed.
+      operationId: count_authors
+      tags:
+        - authors
+      responses:
+        "200":
+          description: Author occurrence counts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  "@context":
+                    type: string
+                  "@type":
+                    type: string
+                  authors:
+                    type: object
+                    additionalProperties:
+                      type: integer
+              example:
+                "@context": "https://www.w3.org/2019/wot/security/v1"
+                "@type": "AuthorCounts"
+                authors:
+                  "John Doe": 5
+                  "Jane Smith": 3
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /keywords:
+    get:
+      summary: List all unique keywords
+      description: |
+        Retrieve a complete list of all unique keywords used in the database.
+      operationId: list_keywords
+      tags:
+        - keywords
+      responses:
+        "200":
+          description: List of keywords
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  "@context":
+                    type: string
+                  "@type":
+                    type: string
+                  keywords:
+                    type: array
+                    items:
+                      type: string
+              example:
+                "@context": "https://www.w3.org/2019/wot/security/v1"
+                "@type": "KeywordList"
+                keywords:
+                  - Python
+                  - JavaScript
+                  - Algorithms
+                  - Data Structures
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /keywords/count:
+    get:
+      summary: Get keyword frequency count
+      description: |
+        Returns a count of how many exercises use each keyword.
+      operationId: count_keywords
+      tags:
+        - keywords
+      responses:
+        "200":
+          description: Keyword occurrence counts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  "@context":
+                    type: string
+                  "@type":
+                    type: string
+                  keywords:
+                    type: object
+                    additionalProperties:
+                      type: integer
+              example:
+                "@context": "https://www.w3.org/2019/wot/security/v1"
+                "@type": "KeywordCounts"
+                keywords:
+                  "Python": 12
+                  "JavaScript": 8
+                  "Algorithms": 15
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /admin/refresh-db:
+    post:
+      summary: Trigger database refresh from GitHub
+      description: |
+        Initiates a background task to refresh the exercise database from GitHub repositories.
+        This operation reads exercise metadata from GitHub and updates the local database.
+        
+        **Authentication**: Currently unrestricted. Consider implementing API key authentication for production.
+      operationId: refresh_database
+      tags:
+        - admin
+      responses:
+        "202":
+          description: Database refresh task accepted and started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+              example:
+                status: "Database refresh task started."
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    Exercise:
+      type: object
+      description: A single STEM exercise
+      properties:
+        "@id":
+          type: string
+          format: uri
+          description: Unique exercise identifier (UUID)
+        "@type":
+          type: string
+          enum: [Exercise]
+        name:
+          type: string
+          description: Exercise title
+        description:
+          type: string
+          description: Detailed description of the exercise
+        keywords:
+          type: array
+          items:
+            type: string
+          description: Tags/keywords associated with this exercise
+        author:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              url:
+                type: string
+                format: url
+          description: Exercise creators
+        teaches:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          description: Learning objectives/topics taught by this exercise
+        requires:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          description: IDs of prerequisite exercises
+      required:
+        - "@id"
+        - "@type"
+        - name
+
+    JsonLdGraph:
+      type: object
+      description: JSON-LD format graph (primary internal format)
+      properties:
+        "@context":
+          description: JSON-LD context URL
+          oneOf:
+            - type: string
+            - type: object
+        "@graph":
+          type: array
+          items:
+            $ref: '#/components/schemas/Exercise'
+          description: Array of exercise nodes
+      required:
+        - "@context"
+        - "@graph"
+
+    NodeLinkGraph:
+      type: object
+      description: Node-Link JSON format (D3.js compatible)
+      properties:
+        nodes:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              group:
+                type: integer
+          description: Graph nodes
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              source:
+                type: string
+              target:
+                type: string
+              value:
+                type: integer
+          description: Graph edges/relationships
+      required:
+        - nodes
+        - links
+
+    Statistics:
+      type: object
+      description: Graph statistics
+      properties:
+        "@context":
+          type: string
+        "@type":
+          type: string
+          enum: [Statistics]
+        nodeCount:
+          type: integer
+          description: Total number of exercises in graph
+        keywordCountDistinct:
+          type: integer
+          description: Number of unique keywords
+        keywordCountTotal:
+          type: integer
+          description: Total count of keyword occurrences
+        created:
+          type: string
+          format: date-time
+          description: Database creation timestamp
+        modified:
+          type: string
+          format: date-time
+          description: Last modification timestamp
+      required:
+        - "@context"
+        - "@type"
+        - nodeCount
+
+    Error:
+      type: object
+      description: Error response
+      properties:
+        detail:
+          type: string
+          description: Error description
+        status:
+          type: integer
+          description: HTTP status code
+      required:
+        - detail
+        - status
+
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            detail: "Exercise not found"
+            status: 404
+
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            detail: "Invalid query parameters"
+            status: 400
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            detail: "Internal server error"
+            status: 500

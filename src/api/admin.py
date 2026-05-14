@@ -3,7 +3,7 @@ from services.updater import refresh_challenge_db_task
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
-@router.post("/refresh")
+@router.post("/refresh-db")
 def refresh_database(background_tasks: BackgroundTasks):
     background_tasks.add_task(refresh_challenge_db_task)
-    return {"status": "refresh started"}
+    return {"status": "Database refresh task started."}

@@ -1,12 +1,5 @@
 class GraphExporter:
-    def load(self):
-        """Lädt die Graphdaten aus dem jeweiligen Format."""
-        raise NotImplementedError
 
-    def filter(self, **criteria):
-        """Filtert die Daten nach author, keyword, topic usw."""
-        raise NotImplementedError
-
-    def export(self):
-        """Gibt die Daten im jeweiligen Format zurück."""
+    def from_ld(self, ld_data: dict):
+        """Konvertiert JSON-LD Daten in das jeweilige Format."""
         raise NotImplementedError

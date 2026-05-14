@@ -42,12 +42,3 @@ class NodeLinkExporter(GraphExporter):
                         nl["links"].append({"source": alt, "target": target})
 
         return nl
-
-    def load(self):
-        raise NotImplementedError("Use from_ld() instead")
-
-    def filter(self, **criteria):
-        raise NotImplementedError("Filtering happens in JSON-LD")
-
-    def export(self):
-        raise NotImplementedError("Use from_ld() instead")

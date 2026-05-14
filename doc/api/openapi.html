@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>STEMgraph API - OpenAPI Übersicht</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f7;
+      color: #222;
+    }
+    header {
+      background: #1f2933;
+      color: #fff;
+      padding: 1.5rem 2rem;
+    }
+    header h1 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1.8rem;
+    }
+    header p {
+      margin: 0.1rem 0;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 1100px;
+      margin: 1.5rem auto 3rem;
+      padding: 0 1.5rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.25rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+    }
+    .tag-list span {
+      display: inline-block;
+      background: #e5f0ff;
+      color: #1a4fb3;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin: 0 0.25rem 0.25rem 0;
+    }
+    .endpoint {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      border-left: 4px solid #2563eb;
+    }
+    .endpoint-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .method {
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      color: #fff;
+    }
+    .method.GET { background: #16a34a; }
+    .method.POST { background: #2563eb; }
+    .path {
+      font-family: "Fira Code", Consolas, monospace;
+      font-size: 0.95rem;
+    }
+    .summary {
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+    .description {
+      margin-top: 0.25rem;
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .meta {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+    }
+    th, td {
+      border: 1px solid #e0e0e0;
+      padding: 0.4rem 0.5rem;
+      vertical-align: top;
+    }
+    th {
+      background: #f0f4f8;
+      text-align: left;
+    }
+    code {
+      font-family: "Fira Code", Consolas, monospace;
+      font-size: 0.85rem;
+      background: #f3f4f6;
+      padding: 0.1rem 0.25rem;
+      border-radius: 3px;
+    }
+    .schema {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      border-left: 4px solid #6b7280;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      background: #e5e7eb;
+      margin-left: 0.25rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+      margin: 2rem 0 1rem;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>STEMgraph API - OpenAPI Übersicht</h1>
+  <p>Version 1.0.0 · REST-API für graphbasierte STEM-Lerninhalte</p>
+  <p>Projekt: <strong>STEMgraph</strong> · Lizenz: MIT · Kontakt: <a href="https://github.com/STEMgraph" style="color:#bfdbfe;">GitHub</a></p>
+</header>
+
+<main>
+  <section>
+    <h2>Überblick</h2>
+    <p>
+      Die STEMgraph API stellt einen REST-basierten Zugriff auf eine graphorientierte Datenbank von STEM-Übungen bereit.
+      Die Daten liegen intern im JSON-LD-Format vor und können in verschiedenen Ausgabeformaten abgerufen werden. Die
+      Schnittstelle unterstützt Filterung nach Autoren, Keywords und Themen, das Traversieren von Abhängigkeiten im
+      Lernpfad sowie die Aggregation von Metadaten wie Autoren- und Keyword-Statistiken.
+    </p>
+    <p>
+      Die API ist über einen Entwicklungsserver unter <code>http://localhost:8000</code> und über den
+      Produktivserver unter <code>https://stemgraph-api.boekelmann.net</code> erreichbar.
+    </p>
+    <div class="tag-list">
+      <span>exercises</span>
+      <span>graph</span>
+      <span>authors</span>
+      <span>keywords</span>
+      <span>admin</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Wichtige Endpunkte</h2>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/</span>
+      </div>
+      <div class="summary">API-Root</div>
+      <div class="description">
+        Gibt eine einfache Begrüßungsnachricht zurück und dient als schneller Health-Check, ob der Dienst läuft.
+      </div>
+      <div class="meta">Antwort: <code>200 OK</code>, JSON-Objekt mit Feld <code>message</code>.</div>
+    </div>
+
+    <h3>Übungen (exercises)</h3>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/exercises</span>
+      </div>
+      <div class="summary">Übungen mit optionalen Filtern auflisten</div>
+      <div class="description">
+        Liefert eine Liste von Übungen aus der Datenbank. Die Ergebnisse können nach Autor, Keyword oder Thema
+        gefiltert werden und in verschiedenen Formaten (JSON-LD, Node-Link, YAML) zurückgegeben werden. Die Filter
+        unterstützen exakte und partielle Übereinstimmung.
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Typ</th>
+            <th>Beschreibung</th>
+            <th>Beispiel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>author</code></td>
+            <td>string (optional)</td>
+            <td>Filtert nach Autorname.</td>
+            <td><code>John Doe</code></td>
+          </tr>
+          <tr>
+            <td><code>keyword</code></td>
+            <td>string (optional)</td>
+            <td>Filtert nach Keyword.</td>
+            <td><code>Python</code></td>
+          </tr>
+          <tr>
+            <td><code>topic</code></td>
+            <td>string (optional)</td>
+            <td>Filtert nach Thema aus dem Feld <code>teaches</code>.</td>
+            <td><code>Functions</code></td>
+          </tr>
+          <tr>
+            <td><code>match</code></td>
+            <td>string (optional)</td>
+            <td>Matching-Modus: <code>exact</code> oder <code>partial</code> (Standard: <code>exact</code>).</td>
+            <td><code>partial</code></td>
+          </tr>
+          <tr>
+            <td><code>format</code></td>
+            <td>string (optional)</td>
+            <td>Ausgabeformat: <code>jsonld</code>, <code>nodelink</code> oder <code>yaml</code> (Standard: <code>jsonld</code>).</td>
+            <td><code>nodelink</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="meta">
+        Antworten: <code>200 OK</code> (Graph in gewünschtem Format),
+        <code>400 Bad Request</code> bei ungültigen Parametern,
+        <code>500 Internal Server Error</code> bei Serverfehlern.
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/exercises/start-nodes</span>
+      </div>
+      <div class="summary">Startknoten ohne Abhängigkeiten</div>
+      <div class="description">
+        Liefert alle Übungen, die keine eingehenden Abhängigkeiten besitzen und damit als Einstiegspunkte in den
+        Lernpfad dienen. Das Ausgabeformat kann wie bei <code>/exercises</code> gewählt werden.
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/exercises/end-nodes</span>
+      </div>
+      <div class="summary">Endknoten ohne ausgehende Abhängigkeiten</div>
+      <div class="description">
+        Liefert alle Übungen, die keine ausgehenden Abhängigkeiten besitzen und damit Endpunkte im Lernpfad darstellen.
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/exercises/{uuid}</span>
+      </div>
+      <div class="summary">Einzelne Übung abrufen</div>
+      <div class="description">
+        Ruft eine spezifische Übung anhand ihrer UUID ab und gibt sie als kleinen Graphen mit einem einzelnen Knoten
+        zurück. Das Format kann wie gewohnt gewählt werden.
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Pfadparameter</th>
+            <th>Typ</th>
+            <th>Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>uuid</code></td>
+            <td>string (UUID)</td>
+            <td>Eindeutige Kennung der Übung.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="meta">
+        Antworten: <code>200 OK</code> (Übung gefunden),
+        <code>404 Not Found</code> (nicht vorhanden),
+        <code>500 Internal Server Error</code>.
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/exercises/{uuid}/path</span>
+      </div>
+      <div class="summary">Abhängigkeitskette zu einer Übung</div>
+      <div class="description">
+        Gibt den vollständigen Abhängigkeitsweg (Prerequisite-Kette) zurück, der zu einer bestimmten Übung führt.
+        So lässt sich nachvollziehen, welche Übungen zuvor abgeschlossen werden sollten.
+      </div>
+    </div>
+
+    <h3>Graph (graph)</h3>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/graph</span>
+      </div>
+      <div class="summary">Kompletten Graph abrufen</div>
+      <div class="description">
+        Liefert den gesamten Übungsgraphen mit allen Knoten und Kanten. Für große Datenbestände kann die Antwort
+        entsprechend umfangreich sein. Das Ausgabeformat ist wählbar.
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/graph/statistics</span>
+      </div>
+      <div class="summary">Graphstatistiken abrufen</div>
+      <div class="description">
+        Liefert aggregierte Statistiken über den Graphen, zum Beispiel die Gesamtzahl der Übungen, die Anzahl
+        unterschiedlicher Keywords und die Gesamtzahl der Keyword-Vorkommen.
+      </div>
+    </div>
+
+    <h3>Autoren (authors)</h3>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/authors</span>
+      </div>
+      <div class="summary">Alle Autoren auflisten</div>
+      <div class="description">
+        Gibt eine Liste aller eindeutigen Autoren zurück, die in der Datenbank vorkommen, inklusive Metadaten im
+        JSON-LD-Stil.
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/authors/count</span>
+      </div>
+      <div class="summary">Autoren-Häufigkeiten</div>
+      <div class="description">
+        Liefert eine Häufigkeitsverteilung, wie viele Übungen pro Autor vorhanden sind.
+      </div>
+    </div>
+
+    <h3>Keywords (keywords)</h3>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/keywords</span>
+      </div>
+      <div class="summary">Alle Keywords auflisten</div>
+      <div class="description">
+        Gibt eine Liste aller eindeutigen Keywords zurück, die in der Datenbank verwendet werden.
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method GET">GET</span>
+        <span class="path">/keywords/count</span>
+      </div>
+      <div class="summary">Keyword-Häufigkeiten</div>
+      <div class="description">
+        Liefert eine Häufigkeitsverteilung, wie oft jedes Keyword in den Übungen vorkommt.
+      </div>
+    </div>
+
+    <h3>Administration (admin)</h3>
+
+    <div class="endpoint">
+      <div class="endpoint-header">
+        <span class="method POST">POST</span>
+        <span class="path">/admin/refresh-db</span>
+      </div>
+      <div class="summary">Datenbank-Refresh aus GitHub anstoßen</div>
+      <div class="description">
+        Startet eine Hintergrundaufgabe, die die Übungsdatenbank aus den GitHub-Repositories aktualisiert. Dabei werden
+        Metadaten aus den Repositories gelesen, gecacht und die JSON-LD-Datenbank neu erzeugt. In der aktuellen
+        Version ist der Endpunkt nicht authentifiziert; für einen produktiven Einsatz sollte eine Authentifizierung
+        (z.&nbsp;B. API-Key) ergänzt werden.
+      </div>
+      <div class="meta">
+        Antwort: <code>202 Accepted</code> mit Statusmeldung, oder <code>500 Internal Server Error</code> bei Fehlern.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Datenmodelle (Schemas)</h2>
+
+    <div class="schema">
+      <h3>Exercise <span class="badge">Knoten</span></h3>
+      <p>
+        Ein <strong>Exercise</strong> repräsentiert eine einzelne Übung im STEMgraph-System. Jede Übung besitzt eine
+        eindeutige ID, einen Typ, einen Namen und optionale Metadaten wie Beschreibung, Keywords, Autoren und
+        Lernziele.
+      </p>
+      <ul>
+        <li><code>@id</code>: eindeutige Kennung (URI/UUID)</li>
+        <li><code>@type</code>: immer <code>Exercise</code></li>
+        <li><code>name</code>: Titel der Übung</li>
+        <li><code>description</code>: optionale Beschreibung</li>
+        <li><code>keywords</code>: Liste von Schlagwörtern</li>
+        <li><code>author</code>: Liste von Objekten mit <code>name</code> und optional <code>url</code></li>
+        <li><code>teaches</code>: Lernziele/Themen (String oder Liste)</li>
+        <li><code>requires</code>: IDs von Voraussetzungen (optional)</li>
+      </ul>
+    </div>
+
+    <div class="schema">
+      <h3>JsonLdGraph <span class="badge">Primärformat</span></h3>
+      <p>
+        Das <strong>JsonLdGraph</strong>-Schema beschreibt den internen JSON-LD-Graphen. Er besteht aus einem
+        <code>@context</code> und einem <code>@graph</code>, das eine Liste von <code>Exercise</code>-Knoten enthält.
+      </p>
+    </div>
+
+    <div class="schema">
+      <h3>NodeLinkGraph <span class="badge">Visualisierung</span></h3>
+      <p>
+        Das <strong>NodeLinkGraph</strong>-Schema beschreibt eine Node-Link-Darstellung, wie sie z.&nbsp;B. von D3.js
+        verwendet wird. Es enthält eine Liste von <code>nodes</code> und eine Liste von <code>links</code>, die
+        Kanten zwischen den Knoten repräsentieren.
+      </p>
+    </div>
+
+    <div class="schema">
+      <h3>Statistics</h3>
+      <p>
+        Das <strong>Statistics</strong>-Schema fasst Kennzahlen über den Graphen zusammen, darunter die Anzahl der
+        Knoten, die Anzahl unterschiedlicher Keywords und die Gesamtzahl der Keyword-Vorkommen sowie Zeitstempel zur
+        Erstellung und letzten Änderung.
+      </p>
+    </div>
+
+    <div class="schema">
+      <h3>Error</h3>
+      <p>
+        Das <strong>Error</strong>-Schema beschreibt standardisierte Fehlermeldungen mit einem Textfeld
+        <code>detail</code> und einem HTTP-Statuscode <code>status</code>. Es wird in den vordefinierten Antworten
+        <code>NotFound</code>, <code>BadRequest</code> und <code>InternalServerError</code> verwendet.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  STEMgraph API - menschenlesbare OpenAPI-Übersicht · Generiert aus der Spezifikation <code>openapi.yml</code>
+</footer>
+</body>
+</html>

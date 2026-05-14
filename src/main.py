@@ -1,10 +1,29 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+from log_handling.log_db import init_log_db, rotate_logs
+from log_handling.logger import init_logger
+from log_handling.logging_middleware import logging_middleware
+
 from api import exercises, authors, keywords, graph, admin
 
-# setup the api object
+# Logging initialisieren
+init_log_db()
+rotate_logs()
+init_logger()
+
+# API Objekt initialisieren
 app = FastAPI()
-app.add_middleware(CORSMiddleware, allow_origins=["https://stemgraph.boekelmann.net"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+
+# Middleware registrieren
+app.middleware("http")(logging_middleware)
+app.add_middleware(
+    CORSMiddleware, 
+    allow_origins=["https://stemgraph.boekelmann.net"], 
+    allow_credentials=True, 
+    allow_methods=["*"], 
+    allow_headers=["*"]
+)
 
 @app.get("/")
 def read_root():

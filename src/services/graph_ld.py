@@ -1,18 +1,28 @@
 # JSON-LD Primärdatenbank
 
-import json, os
+from fastapi import status
 from fastapi.responses import JSONResponse
+from datetime import datetime
+import json, os, logging
 from config import STORAGE_DIR, LD_DATABASE, LD_CONTEXT_TEMPLATE
-from services.storage import now, error_notFound
 
+logger = logging.getLogger("storage")
 
 # auxiliary graph manipulation subroutines for JSON-LD graphs
 
 def get_ld_graph():
     """Loads and returns the whole graph framework from the JSON-LD database."""
-    with open(LD_DATABASE, 'r', encoding='utf-8') as f:
-        wholeGraph = json.load(f)
-    return wholeGraph
+    try:
+        with open(LD_DATABASE, 'r', encoding='utf-8') as f:
+            wholeGraph = json.load(f)
+        logger.info("JSON-LD database loaded", {"path": LD_DATABASE})
+        return wholeGraph
+    except FileNotFoundError as e:
+        logger.critical("JSON-LD database not found", {"path": LD_DATABASE, "error": str(e)})
+        raise
+    except json.JSONDecodeError as e:
+        logger.critical("Error decoding JSON-LD database", {"path": LD_DATABASE, "error": str(e)})
+        raise
 
 def init_ld_graph():
     """Returns an empty JSON-LD graph framework."""
@@ -185,3 +195,17 @@ def transform_challenge_metadata_to_ld(md_json):
     if "keywords" in md_json:
         node["keywords"] = md_json["keywords"]
     return node
+
+
+# Hilfsfunktionen
+
+def now():
+    """Gets the current timestamp."""
+    return datetime.utcnow().isoformat() + "Z"
+
+def error_notFound(field, value):
+    """Returns a customized error message for searches with no result."""
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={"error": f"No exercises found for {field}: '{value}'"}
+    )

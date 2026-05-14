@@ -1,7 +1,8 @@
-import os, re, json, time, base64, requests
+import os, re, json, time, base64, requests, logging
 from config import GITHUB_PAT, ORG, STORAGE_DIR, METADATA_FILE
 from services.graph_ld import createdb_jsonld
 
+logger=logging.getLogger("updater")
 
 # auxiliary functions to build / update the database cache
 
@@ -58,8 +59,11 @@ def save_metadata(m):
         json.dump(m, f, ensure_ascii=False, indent=2)
 
 def refresh_challenge_db_task():
+    logger.info("Starting database refresh task...")
+
     token = get_pat()
     repos = list_org_repos(token)
+    logger.debug("Fetched repository list", {"count": len(repos)})
     meta = ensure_metadata()
     uuid_pattern = re.compile(
         r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
@@ -69,9 +73,9 @@ def refresh_challenge_db_task():
         name = r['name']
         owner, branch = r['owner']['login'], r['default_branch']
         sha = latest_commit_sha(token, owner, name, branch)
-        print(f"Checking repo {name}, sha={sha}")
+        logger.debug("Checking repo", {"repo": name, "sha": sha})
         if not uuid_pattern.match(name.lower()):
-            print("Skipped: not UUID")
+            logger.info("Skipped: not UUID", {"repo": name})
             continue
         if meta.get(name, {}).get('sha') != sha:
             readme_text = fetch_readme_text(token, owner, name)
@@ -90,13 +94,13 @@ def refresh_challenge_db_task():
                     }
                     has_db_changed = True
             if not readme_text:
-                print("Skipped: no README")
+                logger.info("Skipped: no README", {"repo": name})
             elif not json_obj:
-                print("Skipped: no valid JSON block")
+                logger.info("Skipped: invalid JSON block", {"repo": name})
             else:
-                print("Saved JSON for", name)
+                logger.info("Saved JSON metadata", {"repo": name})
     if has_db_changed:
         save_metadata(meta)
-        print("All metadata from STEMgraph challenges fetched.")
+        logger.info("All metadata from STEMgraph challenges fetched.")
         createdb_jsonld()
-        print("Database created as JSON-LD.")
+        logger.info("Database created as JSON-LD.")
