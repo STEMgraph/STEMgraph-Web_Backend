@@ -31,3 +31,21 @@ LD_DATABASE = os.path.join(DATABASE_DIR, 'ld-database.json')
 
 # Aliases für Rückwärtskompatibilität
 ORG = GITHUB_ORG
+
+# ============================================================
+# Keycloak (Pflicht)
+# ============================================================
+
+KEYCLOAK_URL = os.environ['KEYCLOAK_URL']
+REALM = os.environ['REALM']
+CLIENT_ID = os.environ['CLIENT_ID']
+
+# ============================================================
+# MariaDB (Pflicht)
+# ============================================================
+
+MARIADB_HOST = os.environ['MARIADB_HOST']
+MARIADB_PORT = int(os.environ['MARIADB_PORT'])
+MARIADB_USER = os.environ['MARIADB_USER']
+MARIADB_PASSWORD = os.environ['MARIADB_PASSWORD']
+MARIADB_NAME = os.environ['MARIADB_NAME']

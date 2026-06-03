@@ -6,6 +6,7 @@ from log_handling.logger import init_logger
 from log_handling.logging_middleware import logging_middleware
 
 from api import exercises, authors, keywords, graph, admin
+from api import users, paths, events
 
 # Logging initialisieren
 init_log_db()
@@ -36,3 +37,6 @@ app.include_router(exercises.router)
 app.include_router(authors.router)
 app.include_router(keywords.router)
 app.include_router(admin.router)
+app.include_router(users.router)
+app.include_router(paths.router)
+app.include_router(events.router)
