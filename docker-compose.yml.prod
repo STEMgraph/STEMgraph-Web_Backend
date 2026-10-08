@@ -11,6 +11,7 @@ services:
       frontproxy_fnet:
         ipv4_address: <ipv4_address>
       backend:
+      stemgraph-network:
 
 volumes:
   graph-db:
@@ -23,3 +24,5 @@ networks:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"
+  stemgraph-network:
+    external: true

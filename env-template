@@ -8,3 +8,13 @@ STORAGE_DIR=/graph-db/repos
 TEMPLATE_DIR=/graph-db/templates
 
 LOG_CONSOLE=true
+
+KEYCLOAK_URL=<your-keycloak-url>
+REALM=<your-realm-name>
+CLIENT_ID=<your-client-id>
+
+MARIADB_HOST=<mariadb-host-or-container-name>
+MARIADB_PORT=3306
+MARIADB_USER=<db-user>
+MARIADB_PASSWORD=<db-password>
+MARIADB_NAME=<db-name>
